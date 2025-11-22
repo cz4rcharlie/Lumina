@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Echo · 回响 | 潜意识映射</title>
+    
+    <!-- 资源预加载优化（DNS预解析） -->
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
+    <!-- 使用Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 使用系统字体，避免加载外部字体 -->
+    <style>
+        @font-face {
+            font-family: 'Noto Serif SC';
+            src: local('PingFang SC'), local('Microsoft YaHei'), local('SimSun');
+        }
+        @font-face {
+            font-family: 'Inter';
+            src: local('PingFang SC'), local('Microsoft YaHei'), local('Arial');
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#050511',     // 虚空黑
+                        gold: '#D4AF37',     // 复古金
+                        lavender: '#E6E6FA', // 薰衣草雾
+                        nebula: '#2D1B4E',   // 星云紫
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif SC"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    animation: {
+                        'breathe': 'breathe 4s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        breathe: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 全局样式微调 */
+        body {
+            background-color: #050511;
+            color: #E6E6FA;
+            overflow: hidden; /* 防止滚动 */
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* 噪点背景纹理 */
+        .noise-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 磨砂玻璃卡片 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 隐藏滚动条 */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex items-center justify-center font-sans relative">
+
+    <div class="noise-bg"></div>
+
+    <div class="fixed top-[-20%] left-[-20%] w-[80vw] h-[80vw] bg-nebula rounded-full blur-[120px] opacity-20 animate-pulse"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-indigo-900 rounded-full blur-[100px] opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+
+    <main id="app" class="relative z-10 w-full max-w-md h-full flex flex-col items-center justify-center p-6 transition-opacity duration-1000">
+        
+        <section id="page-entrance" class="flex flex-col items-center justify-center w-full h-full text-center">
+            <div class="mb-8">
+                <h1 class="font-serif text-2xl text-gold tracking-[0.2em] mb-4">ECHO</h1>
+                <p class="text-slate-400 text-sm tracking-widest font-light opacity-80 mb-8">向宇宙提问前，请先诚实面对自己</p>
+            </div>
+            
+            <!-- 标签选择 -->
+            <div class="flex flex-wrap justify-center gap-3 px-6 mb-8" id="tag-container">
+                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="love_crush">暧昧/暗恋</button>
+                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="love_partner">伴侣/复合</button>
+                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="career_change">跳槽/迷茫</button>
+                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="wealth">搞钱/财运</button>
+                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="self_growth">近期指引</button>
+            </div>
+            
+            <div class="relative group cursor-pointer" id="start-btn" style="opacity: 0; pointer-events: none;">
+                <div class="absolute inset-0 bg-gold rounded-full blur-[20px] opacity-20 group-hover:opacity-40 transition duration-700 animate-breathe"></div>
+                <div class="w-24 h-24 rounded-full border border-gold/30 flex items-center justify-center relative bg-void/50 backdrop-blur-sm">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-nebula to-transparent opacity-80"></div>
+                    <svg class="w-8 h-8 text-gold absolute animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </div>
+            </div>
+            <p class="text-slate-500 text-xs mt-4" id="start-hint">请先选择你的问题</p>
+        </section>
+
+        <section id="page-ritual" class="hidden flex-col items-center justify-center w-full h-full py-8" style="opacity: 0;">
+            <!-- 标题区域 - 固定在顶部 -->
+            <div class="text-center mb-8 flex-shrink-0">
+                <h2 class="font-serif text-xl text-lavender tracking-widest mb-2">洗 牌</h2>
+                <p class="text-xs text-slate-500 font-mono">SHUFFLING THE DESTINY</p>
+            </div>
+
+            <!-- 卡片区域 - 居中，有足够空间 -->
+            <div class="relative flex-1 flex items-center justify-center w-full max-w-xs" style="min-height: 300px;">
+                <!-- 多层卡片堆叠效果 -->
+                <div class="relative w-40 h-64" id="card-stack">
+                    <!-- 背景层卡片（静态） -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/40 to-slate-800/40 rounded-xl border border-gold/10 shadow-lg transform rotate-[-8deg] translate-x-[-8px] translate-y-[4px]"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/50 to-slate-800/50 rounded-xl border border-gold/15 shadow-lg transform rotate-[6deg] translate-x-[6px] translate-y-[-4px]"></div>
+                    
+                    <!-- 主卡片（动态） -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f0f1a] rounded-xl border-2 border-gold/40 shadow-2xl flex items-center justify-center overflow-hidden transition-transform duration-300 ease-out" id="deck-card" style="box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), inset 0 0 60px rgba(212, 175, 55, 0.1);">
+                        <!-- 神秘图案背景 -->
+                        <div class="absolute inset-0 opacity-20" style="background-image: 
+                            radial-gradient(circle at 30% 30%, #D4AF37 2px, transparent 2px),
+                            radial-gradient(circle at 70% 70%, #D4AF37 1px, transparent 1px);
+                            background-size: 40px 40px, 20px 20px;"></div>
+                        
+                        <!-- 中心能量球 -->
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 rounded-full border-2 border-gold/30 flex items-center justify-center animate-pulse" style="box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold/20 to-transparent animate-spin-slow"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- 光效装饰 -->
+                        <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                            <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-gold rounded-full animate-pulse" style="animation-delay: 0s; box-shadow: 0 0 10px #D4AF37;"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1.5 h-1.5 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.5s; box-shadow: 0 0 8px #D4AF37;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-gold/40 rounded-full animate-pulse" style="animation-delay: 1s; box-shadow: 0 0 6px #D4AF37;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部控制区域 - 固定在底部 -->
+            <div class="text-center mt-8 flex-shrink-0 w-full px-4">
+                <p class="text-gold/80 text-sm mb-6 animate-pulse" id="action-text">请摇晃手机</p>
+                <div class="w-full max-w-xs mx-auto h-1 bg-white/10 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-gold/60 via-gold to-gold/60 w-0 transition-all duration-[3000ms] ease-out" style="box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-loading" class="hidden flex-col items-center justify-center w-full h-full" style="opacity: 0;">
+            <div class="w-16 h-16 border-t-2 border-l-2 border-gold rounded-full animate-spin mb-8"></div>
+            <p id="loading-text" class="font-serif text-slate-300 tracking-widest text-sm">正在链接潜意识频率...</p>
+        </section>
+
+        <section id="page-result" class="hidden flex-col w-full h-full py-4 overflow-y-auto hide-scrollbar" style="opacity: 0;">
+            <div class="flex justify-between items-center w-full px-4 mb-4 opacity-60">
+                <span class="text-[10px] font-mono tracking-widest">2024.03.21</span>
+                <span class="text-lg">🌘</span>
+            </div>
+
+            <div class="flex justify-center mb-4 transform transition-all duration-1000 translate-y-4 opacity-0" id="result-card-anim">
+                <div class="relative" style="width: 200px; height: 320px;">
+                    <!-- 外发光边框 -->
+                    <div class="absolute inset-0 rounded-xl" style="box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.1);"></div>
+                    <!-- 主边框 -->
+                    <div class="absolute inset-0 rounded-xl border-2 border-gold/60" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);"></div>
+                    <!-- 内边框装饰 -->
+                    <div class="absolute inset-[2px] rounded-lg border border-gold/30"></div>
+                    <!-- 卡片内容 -->
+                    <div class="relative w-full h-full bg-void/90 rounded-lg overflow-hidden" id="card-content">
+                        <div class="absolute inset-0 bg-gradient-to-b from-gray-800 to-black flex items-center justify-center">
+                            <span class="font-serif text-6xl opacity-20 text-white">0</span>
+                            <p class="absolute bottom-4 text-xs text-white/30 tracking-[0.5em] uppercase">The Fool</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3 text-center px-4 opacity-0" id="result-text-anim">
+                <div>
+                    <h2 class="font-serif text-2xl text-gold mb-1.5">愚 人</h2>
+                    <div class="flex justify-center gap-2 text-xs text-slate-400 font-light">
+                        <span class="border border-white/10 px-2 py-1 rounded">#无限可能</span>
+                        <span class="border border-white/10 px-2 py-1 rounded">#盲目勇气</span>
+                    </div>
+                </div>
+
+                <div class="relative py-3">
+                    <span class="absolute top-0 left-0 text-3xl text-gold/20 font-serif">"</span>
+                    <p class="text-xs leading-relaxed text-slate-200 font-light text-justify px-4">
+                        你正站在悬崖边缘，但不必恐惧坠落。现在的你拥有一种"不知天高地厚"的幸运，逻辑和规划此刻只会束缚你。闭上眼，跳下去，风会接住你。
+                    </p>
+                    <span class="absolute bottom-0 right-0 text-3xl text-gold/20 font-serif">"</span>
+                </div>
+
+                <div class="bg-white/5 rounded-lg p-3 border border-white/5">
+                    <p class="text-xs text-gold/60 mb-1 uppercase tracking-widest">Action</p>
+                    <p class="text-xs text-white">做一件平时绝对不敢做的傻事。</p>
+                </div>
+
+                <div class="flex justify-between items-center pt-3 border-t border-white/10">
+                    <div class="text-left">
+                        <p class="text-[10px] text-slate-500">宇宙信号</p>
+                        <p class="font-mono text-gold text-base">777</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] text-slate-500">幸运光晕</p>
+                        <div class="flex items-center justify-end gap-2">
+                            <span class="text-xs text-slate-300">星尘白</span>
+                            <div class="w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="mt-4 w-full py-3 border-2 border-gold text-gold text-sm tracking-[0.2em] uppercase hover:bg-gold hover:text-black transition-colors duration-300 opacity-0" id="save-btn-anim" onclick="saveCard()" style="box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);">
+                领取护身符
+            </button>
+            
+            <button class="mt-3 w-full py-2.5 border border-white/20 text-white/60 text-xs tracking-widest uppercase hover:bg-white/5 transition-colors duration-300 opacity-0" id="retry-btn-anim" onclick="retryDraw()" style="display: none;">
+                重新抽牌
+            </button>
+            
+            <div class="h-12"></div>
+        </section>
+
+    </main>
+
+    <script>
+        // ========== 全局状态 ==========
+        let cardsData = [];
+        let selectedTag = null;
+        let currentResult = null;
+        
+        // 状态机
+        const pages = {
+            entrance: document.getElementById('page-entrance'),
+            ritual: document.getElementById('page-ritual'),
+            loading: document.getElementById('page-loading'),
+            result: document.getElementById('page-result')
+        };
+
+        // ========== 工具函数 ==========
+        function switchPage(from, to) {
+            from.style.opacity = '0';
+            setTimeout(() => {
+                from.classList.add('hidden');
+                to.classList.remove('hidden');
+                void to.offsetWidth; 
+                to.style.opacity = '1';
+                to.style.transition = 'opacity 0.5s ease-in';
+            }, 500);
+        }
+
+        // FNV-1a Hash算法
+        function fnv1aHash(str) {
+            let hash = 2166136261;
+            for (let i = 0; i < str.length; i++) {
+                hash ^= str.charCodeAt(i);
+                hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
+            }
+            return hash >>> 0; // 转为无符号32位整数
+        }
+
+        // 生成灵数（基于Hash）
+        function generateAngelNumber(hash) {
+            const numbers = [111, 222, 333, 444, 555, 666, 777, 888, 999, 1212, 1313, 1414];
+            return numbers[Math.abs(hash) % numbers.length];
+        }
+
+        // 生成幸运色（基于Hash）
+        function generateAuraColor(hash) {
+            const colors = [
+                { name: '星尘白', code: '#FFFFFF' },
+                { name: '香槟金', code: '#D4AF37' },
+                { name: '薰衣草紫', code: '#E6E6FA' },
+                { name: '深空蓝', code: '#2D1B4E' },
+                { name: '玫瑰金', code: '#E8B4B8' },
+                { name: '月光银', code: '#C0C0C0' },
+                { name: '翡翠绿', code: '#50C878' },
+                { name: '琥珀橙', code: '#FFBF00' }
+            ];
+            return colors[Math.abs(hash) % colors.length];
+        }
+
+        // 获取当前日期
+        function getCurrentDate() {
+            const now = new Date();
+            return `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
+        }
+
+        // 获取月相图标
+        function getMoonPhase() {
+            const phases = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
+            const day = new Date().getDate();
+            return phases[day % phases.length];
+        }
+
+        // ========== 数据加载 ==========
+        async function loadCardsData() {
+            try {
+                const response = await fetch('MajorArcana22.json');
+                cardsData = await response.json();
+                console.log('卡牌数据加载成功:', cardsData.length, '张');
+            } catch (error) {
+                console.error('加载卡牌数据失败:', error);
+                alert('数据加载失败，请刷新页面重试');
+            }
+        }
+
+        // ========== 标签选择 ==========
+        function initTagSelection() {
+            const tagButtons = document.querySelectorAll('.tag-btn');
+            const startBtn = document.getElementById('start-btn');
+            const startHint = document.getElementById('start-hint');
+            
+            tagButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 移除其他按钮的选中状态
+                    tagButtons.forEach(b => {
+                        b.classList.remove('bg-gold', 'text-black', 'border-gold');
+                        b.classList.add('border-gold/30', 'text-gold/70');
+                    });
+                    
+                    // 选中当前按钮
+                    btn.classList.add('bg-gold', 'text-black', 'border-gold');
+                    btn.classList.remove('border-gold/30', 'text-gold/70');
+                    
+                    selectedTag = btn.dataset.tag;
+                    
+                    // 显示开始按钮
+                    startBtn.style.opacity = '1';
+                    startBtn.style.pointerEvents = 'auto';
+                    startHint.textContent = '点击注入能量 · 开启链接';
+                });
+            });
+        }
+
+        // ========== 开始旅程 ==========
+        function startJourney() {
+            if (!selectedTag) {
+                alert('请先选择你的问题');
+                return;
+            }
+            
+            // 请求陀螺仪权限（iOS）
+            if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+                DeviceMotionEvent.requestPermission()
+                    .then(response => {
+                        if (response === 'granted') {
+                            proceedToRitual();
+                        } else {
+                            // 降级为触摸滑动
+                            proceedToRitual(true);
+                        }
+                    })
+                    .catch(() => {
+                        proceedToRitual(true);
+                    });
+            } else {
+                proceedToRitual();
+            }
+        }
+
+        function proceedToRitual(useTouch = false) {
+            pages.entrance.classList.add('animate-pulse');
+            setTimeout(() => {
+                switchPage(pages.entrance, pages.ritual);
+                startRitualLogic(useTouch);
+            }, 800);
+        }
+
+        // ========== 混沌洗牌算法 ==========
+        function startRitualLogic(useTouch = false) {
+            const progressBar = document.getElementById('progress-bar');
+            const deckCard = document.getElementById('deck-card');
+            const actionText = document.getElementById('action-text');
+            
+            // 熵数据收集
+            let entropyData = [];
+            let lastSampleTime = Date.now();
+            let lastX = 0, lastY = 0;
+            let lastAlpha = 0, lastBeta = 0, lastGamma = 0;
+            
+            // 进度条在3秒内逐渐填满
+            progressBar.style.width = '0%';
+            setTimeout(() => {
+                progressBar.style.width = '100%';
+            }, 50);
+
+            // 数据采样函数（每100ms采样一次）
+            function sampleData() {
+                const now = Date.now();
+                const timestamp = now;
+                
+                if (useTouch) {
+                    // 触摸模式：使用鼠标/触摸位置
+                    entropyData.push({
+                        x: lastX,
+                        y: lastY,
+                        time: timestamp
+                    });
+                } else {
+                    // 陀螺仪模式：使用设备运动数据
+                    entropyData.push({
+                        alpha: lastAlpha,
+                        beta: lastBeta,
+                        gamma: lastGamma,
+                        time: timestamp
+                    });
+                }
+            }
+
+            // 鼠标/触摸事件监听
+            let mouseMoveHandler, touchMoveHandler;
+            
+            if (useTouch) {
+                actionText.textContent = '请用手指在屏幕画圆';
+                
+                mouseMoveHandler = (e) => {
+                    lastX = e.clientX;
+                    lastY = e.clientY;
+                };
+                
+                touchMoveHandler = (e) => {
+                    if (e.touches.length > 0) {
+                        lastX = e.touches[0].clientX;
+                        lastY = e.touches[0].clientY;
+                    }
+                };
+                
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('touchmove', touchMoveHandler);
+            } else {
+                actionText.textContent = '请摇晃手机';
+                
+                // 陀螺仪事件监听
+                const deviceMotionHandler = (e) => {
+                    if (e.rotationRate) {
+                        lastAlpha = e.rotationRate.alpha || 0;
+                        lastBeta = e.rotationRate.beta || 0;
+                        lastGamma = e.rotationRate.gamma || 0;
+                    }
+                };
+                
+                window.addEventListener('devicemotion', deviceMotionHandler);
+                
+                // 清理函数
+                window.cleanupDeviceMotion = () => {
+                    window.removeEventListener('devicemotion', deviceMotionHandler);
+                };
+            }
+
+            // 采样定时器（每100ms）
+            const sampleInterval = setInterval(sampleData, 100);
+            
+            // 视觉反馈定时器（每150ms，更流畅的动画）
+            let shakeCount = 0;
+            let lastRotation = 0;
+            let lastTranslateX = 0;
+            let lastTranslateY = 0;
+            
+            const visualInterval = setInterval(() => {
+                shakeCount++;
+                
+                // 计算进度（0-1）
+                const progress = shakeCount / 20; // 3秒 = 20次 * 150ms
+                
+                // 根据进度调整动画强度（开始强烈，逐渐减弱）
+                const intensity = 1 - (progress * 0.3); // 从1.0到0.7
+                
+                // 平滑的随机旋转（使用缓动，避免突变）
+                const targetRot = (Math.random() * 12 - 6) * intensity;
+                const targetX = (Math.random() * 12 - 6) * intensity;
+                const targetY = (Math.random() * 8 - 4) * intensity;
+                
+                // 平滑过渡（避免突然跳动）
+                lastRotation = lastRotation * 0.6 + targetRot * 0.4;
+                lastTranslateX = lastTranslateX * 0.6 + targetX * 0.4;
+                lastTranslateY = lastTranslateY * 0.6 + targetY * 0.4;
+                
+                // 添加轻微的缩放效果（呼吸感）
+                const scale = 1 + Math.sin(shakeCount * 0.3) * 0.02;
+                
+                // 应用变换
+                deckCard.style.transform = `
+                    rotate(${lastRotation}deg) 
+                    translate(${lastTranslateX}px, ${lastTranslateY}px)
+                    scale(${scale})
+                `;
+                
+                // 添加光效强度变化
+                const glowIntensity = 0.3 + Math.sin(shakeCount * 0.5) * 0.2;
+                deckCard.style.boxShadow = `
+                    0 0 ${30 * glowIntensity}px rgba(212, 175, 55, ${0.3 * glowIntensity}),
+                    inset 0 0 ${60 * glowIntensity}px rgba(212, 175, 55, ${0.1 * glowIntensity})
+                `;
+                
+                // 震动反馈（只在特定时机）
+                if (navigator.vibrate && !useTouch && shakeCount % 3 === 0) {
+                    navigator.vibrate(30);
+                }
+                
+                if (shakeCount >= 20) { // 3秒后（20次 * 150ms = 3000ms）
+                    clearInterval(sampleInterval);
+                    clearInterval(visualInterval);
+                    
+                    // 清理事件监听
+                    if (useTouch) {
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('touchmove', touchMoveHandler);
+                    } else if (window.cleanupDeviceMotion) {
+                        window.cleanupDeviceMotion();
+                    }
+                    
+                    // 最终动画：卡片回到中心并放大
+                    deckCard.style.transition = 'transform 0.5s ease-out, box-shadow 0.5s ease-out';
+                    deckCard.style.transform = 'rotate(0deg) translate(0, 0) scale(1.05)';
+                    deckCard.style.boxShadow = '0 0 40px rgba(212, 175, 55, 0.5), inset 0 0 80px rgba(212, 175, 55, 0.2)';
+                    
+                    // 延迟后进入加载页
+                    setTimeout(() => {
+                        // 计算Hash并抽取卡牌
+                        const hash = calculateHash(entropyData);
+                        const result = drawCard(hash);
+                        finishRitual(result);
+                    }, 500);
+                }
+            }, 150);
+        }
+
+        // 计算Hash值
+        function calculateHash(entropyData) {
+            if (entropyData.length === 0) {
+                // 如果没有数据，使用时间戳作为后备
+                entropyData = [{ time: Date.now(), x: Math.random(), y: Math.random() }];
+            }
+            
+            // 构建熵字符串
+            let entropyString = '';
+            entropyData.forEach(data => {
+                if (data.x !== undefined) {
+                    entropyString += `${data.x},${data.y},${data.time}`;
+                } else {
+                    entropyString += `${data.alpha},${data.beta},${data.gamma},${data.time}`;
+                }
+            });
+            
+            // 添加额外熵源
+            entropyString += Date.now().toString();
+            entropyString += Math.random().toString();
+            
+            return fnv1aHash(entropyString);
+        }
+
+        // 抽取卡牌
+        function drawCard(hash) {
+            const cardIndex = Math.abs(hash) % 22;
+            const isReversed = (hash % 2 !== 0);
+            const card = cardsData[cardIndex];
+            
+            return {
+                card: card,
+                isReversed: isReversed,
+                hash: hash
+            };
+        }
+
+        // ========== 完成仪式 -> 进入伪加载 ==========
+        function finishRitual(result) {
+            currentResult = result;
+            switchPage(pages.ritual, pages.loading);
+            
+            const loadingText = document.getElementById('loading-text');
+            const phrases = [
+                "正在链接潜意识频率...",
+                "捕捉环境磁场熵值...",
+                "星图矩阵校准中...",
+                "解读完成。"
+            ];
+            
+            let i = 0;
+            const textInterval = setInterval(() => {
+                if (i < phrases.length) {
+                loadingText.innerText = phrases[i];
+                i++;
+                } else {
+                    clearInterval(textInterval);
+                }
+            }, 800);
+
+            // 3.2秒后显示结果
+            setTimeout(() => {
+                showResult(result);
+            }, 3200);
+        }
+
+        // ========== 显示结果 ==========
+        function showResult(result) {
+            switchPage(pages.loading, pages.result);
+            
+            const card = result.card;
+            const isReversed = result.isReversed;
+            const hash = result.hash;
+            
+            // 调试信息：在控制台显示卡牌信息
+            console.log('========== 卡牌信息 ==========');
+            console.log('卡牌ID:', card.id);
+            console.log('卡牌名称:', card.name_cn);
+            console.log('Hash值:', hash);
+            console.log('Hash % 2 =', hash % 2);
+            console.log('是否逆位:', isReversed);
+            console.log('图片旋转:', isReversed ? '180deg (逆位 - 图片应倒置)' : '0deg (正位 - 图片应正常)');
+            console.log('============================');
+            
+            // 更新日期和月相
+            const headerDiv = pages.result.querySelector('.flex.justify-between.items-center');
+            if (headerDiv) {
+                const dateElement = headerDiv.querySelector('span.font-mono');
+                const moonElement = headerDiv.querySelector('span.text-lg');
+                if (dateElement) dateElement.textContent = getCurrentDate();
+                if (moonElement) moonElement.textContent = getMoonPhase();
+            }
+            
+            // 更新卡牌图片（延迟加载，只加载当前需要的）
+            const cardContainer = document.querySelector('#card-content');
+            if (cardContainer) {
+                // 显示加载动画
+                cardContainer.innerHTML = '<div class="absolute inset-0 flex items-center justify-center bg-void/50"><div class="w-8 h-8 border-t-2 border-l-2 border-gold rounded-full animate-spin"></div></div>';
+                
+                const img = document.createElement('img');
+                // 构建文件名，使用压缩后的WebP格式
+                const fileName = `${card.id}. ${card.name_cn} (${card.name_en}).webp`;
+                img.alt = card.name_cn;
+                img.className = 'w-full h-full object-cover';
+                
+                // 设置旋转：正位不旋转（完全不设置transform），逆位旋转180度
+                const setRotation = () => {
+                    if (isReversed) {
+                        img.style.transform = 'rotate(180deg)';
+                        img.style.transformOrigin = 'center center';
+                    } else {
+                        // 正位：完全清除transform，确保图片正常显示
+                        img.style.transform = '';
+                        img.style.transformOrigin = '';
+                    }
+                };
+                
+                // 图片加载完成后的处理
+                const loadStartTime = performance.now();
+                img.onload = () => {
+                    const loadTime = performance.now() - loadStartTime;
+                    setRotation();
+                    // 移除加载动画，显示图片
+                    cardContainer.innerHTML = '';
+                    cardContainer.appendChild(img);
+                    console.log(`图片加载完成，耗时: ${loadTime.toFixed(2)}ms，旋转状态:`, isReversed ? '180deg (逆位)' : '无旋转 (正位)');
+                };
+                
+                img.onerror = function() {
+                    // 如果图片加载失败，显示占位符
+                    cardContainer.innerHTML = '';
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'absolute inset-0 bg-gradient-to-b from-gray-800 to-black flex items-center justify-center';
+                    placeholder.innerHTML = `
+                        <span class="font-serif text-6xl opacity-20 text-white">${card.id}</span>
+                        <p class="absolute bottom-4 text-xs text-white/30 tracking-[0.5em] uppercase">${card.name_en}</p>
+                    `;
+                    cardContainer.appendChild(placeholder);
+                };
+                
+                // 开始加载图片（延迟加载，只加载当前需要的，使用压缩后的WebP格式）
+                img.src = `cards_small/${fileName}`;
+            }
+            
+            // 更新卡牌名称和正逆位标志
+            const nameElement = document.querySelector('#result-text-anim h2');
+            if (nameElement) {
+                const positionText = isReversed ? '逆位' : '正位';
+                const positionClass = isReversed ? 'text-red-400' : 'text-green-400';
+                const positionBg = isReversed ? 'bg-red-500/20' : 'bg-green-500/20';
+                nameElement.innerHTML = `
+                    ${card.name_cn}
+                    <span class="ml-3 text-base ${positionClass} font-normal px-3 py-1 rounded-full ${positionBg} border ${isReversed ? 'border-red-500/50' : 'border-green-500/50'}">
+                        ${positionText}
+                    </span>
+                `;
+            }
+            
+            // 更新关键词
+            const keywords = isReversed ? card.keywords.reversed : card.keywords.upright;
+            const keywordsContainer = document.querySelector('#result-text-anim .flex.gap-3');
+            if (keywordsContainer) {
+                keywordsContainer.innerHTML = '';
+                const selectedKeywords = keywords.slice(0, 2);
+                selectedKeywords.forEach(keyword => {
+                    const span = document.createElement('span');
+                    span.className = 'border border-white/10 px-2 py-1 rounded text-xs text-slate-400 font-light';
+                    span.textContent = `#${keyword}`;
+                    keywordsContainer.appendChild(span);
+                });
+            }
+            
+            // 更新文案
+            const message = isReversed ? card.message.reversed : card.message.upright;
+            const messageElement = document.querySelector('#result-text-anim .relative.py-4 p.text-sm');
+            if (messageElement) messageElement.textContent = message;
+            
+            // 更新行动建议
+            const action = isReversed ? card.action_item.reversed : card.action_item.upright;
+            const actionElement = document.querySelector('#result-text-anim .bg-white\\/5 p.text-sm.text-white');
+            if (actionElement) actionElement.textContent = action;
+            
+            // 更新社交货币挂件
+            const angelNumber = generateAngelNumber(hash);
+            const auraColor = generateAuraColor(hash);
+            
+            const numberElement = document.querySelector('#result-text-anim .font-mono.text-lg');
+            const colorNameElement = document.querySelector('#result-text-anim .text-xs.text-slate-300');
+            const colorDot = document.querySelector('#result-text-anim .w-3.h-3');
+            
+            if (numberElement) numberElement.textContent = angelNumber;
+            if (colorNameElement) colorNameElement.textContent = auraColor.name;
+            if (colorDot) {
+                colorDot.style.backgroundColor = auraColor.code;
+                colorDot.style.boxShadow = `0 0 10px ${auraColor.code}80`;
+            }
+            
+            // 依次浮现元素
+            setTimeout(() => {
+                document.getElementById('result-card-anim').classList.remove('translate-y-4', 'opacity-0');
+            }, 100);
+            
+            setTimeout(() => {
+                document.getElementById('result-text-anim').classList.remove('opacity-0');
+                document.getElementById('result-text-anim').classList.add('animate-float');
+            }, 600);
+
+            setTimeout(() => {
+                document.getElementById('save-btn-anim').classList.remove('opacity-0');
+                document.getElementById('retry-btn-anim').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('retry-btn-anim').classList.remove('opacity-0');
+                }, 100);
+            }, 1200);
+        }
+
+        // ========== 保存卡片 ==========
+        async function saveCard() {
+            // 使用html2canvas生成图片
+            try {
+                // 动态加载html2canvas库（优先使用国内访问较快的CDN）
+                if (typeof html2canvas === 'undefined') {
+                    const script = document.createElement('script');
+                    // 优先使用jsdelivr（国内访问较快），失败则尝试unpkg
+                    script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+                    script.crossOrigin = 'anonymous';
+                    document.head.appendChild(script);
+                    await new Promise((resolve, reject) => {
+                        const timeout = setTimeout(() => {
+                            // 超时后尝试备用CDN
+                            const fallbackScript = document.createElement('script');
+                            fallbackScript.src = 'https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js';
+                            fallbackScript.crossOrigin = 'anonymous';
+                            document.head.appendChild(fallbackScript);
+                            fallbackScript.onload = () => {
+                                clearTimeout(timeout);
+                                resolve();
+                            };
+                            fallbackScript.onerror = () => reject(new Error('无法加载html2canvas库'));
+                        }, 5000); // 5秒超时
+                        
+                        script.onload = () => {
+                            clearTimeout(timeout);
+                            resolve();
+                        };
+                        script.onerror = () => {
+                            clearTimeout(timeout);
+                            // 如果jsdelivr失败，立即尝试unpkg
+                            const fallbackScript = document.createElement('script');
+                            fallbackScript.src = 'https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js';
+                            fallbackScript.crossOrigin = 'anonymous';
+                            document.head.appendChild(fallbackScript);
+                            fallbackScript.onload = () => resolve();
+                            fallbackScript.onerror = () => reject(new Error('无法加载html2canvas库'));
+                        };
+                    });
+                }
+                
+                const resultSection = document.getElementById('page-result');
+                const canvas = await html2canvas(resultSection, {
+                    backgroundColor: '#050511',
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                });
+                
+                // 转换为图片并下载
+                const link = document.createElement('a');
+                link.download = `echo-${currentResult.card.id}-${Date.now()}.jpg`;
+                link.href = canvas.toDataURL('image/jpeg', 0.9);
+                link.click();
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请稍后重试');
+            }
+        }
+
+        // ========== 重新抽牌 ==========
+        function retryDraw() {
+            // 重置状态
+            selectedTag = null;
+            currentResult = null;
+            
+            // 重置UI
+            document.querySelectorAll('.tag-btn').forEach(btn => {
+                btn.classList.remove('bg-gold', 'text-black', 'border-gold');
+                btn.classList.add('border-gold/30', 'text-gold/70');
+            });
+            
+            document.getElementById('start-btn').style.opacity = '0';
+            document.getElementById('start-btn').style.pointerEvents = 'none';
+            document.getElementById('start-hint').textContent = '请先选择你的问题';
+            
+            // 重置结果页
+            document.getElementById('result-card-anim').classList.add('translate-y-4', 'opacity-0');
+            document.getElementById('result-text-anim').classList.add('opacity-0');
+            document.getElementById('save-btn-anim').classList.add('opacity-0');
+            document.getElementById('retry-btn-anim').classList.add('opacity-0');
+            document.getElementById('retry-btn-anim').style.display = 'none';
+            
+            // 返回入口页
+            switchPage(pages.result, pages.entrance);
+        }
+
+        // ========== 图片预加载（延迟加载，只加载当前需要的）==========
+        function preloadCardImage(cardId, nameCn, nameEn) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                const fileName = `${cardId}. ${nameCn} (${nameEn}).webp`;
+                img.src = `cards_small/${fileName}`;
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+            });
+        }
+
+        // ========== 初始化 ==========
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 显示加载提示
+            console.log('开始加载数据...');
+            const startTime = performance.now();
+            
+            await loadCardsData();
+            
+            const loadTime = performance.now() - startTime;
+            console.log(`数据加载完成，耗时: ${loadTime.toFixed(2)}ms`);
+            
+            initTagSelection();
+            
+            // 绑定开始按钮
+            document.getElementById('start-btn').addEventListener('click', startJourney);
+        });
+    </script>
+</body>
+</html>
