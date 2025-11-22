@@ -1,0 +1,81 @@
+/* 全局样式微调 */
+body {
+    background-color: #050511;
+    color: #E6E6FA;
+    overflow: hidden; /* 防止滚动 */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 噪点背景纹理 */
+.noise-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 磨砂玻璃卡片 */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* 隐藏滚动条 */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* 闪烁光效 */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* 星空层样式优化 */
+.starry-layer {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+/* 标签按钮样式修复 */
+.tag-btn {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+}
+
+.tag-btn:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.tag-btn:focus:not(:hover) {
+    transform: none !important;
+}
+
+/* 确保选中状态在各种情况下都保持 */
+.tag-btn.bg-gold,
+.tag-btn.text-black,
+.tag-btn.border-gold {
+    background-color: #D4AF37 !important;
+    color: #000000 !important;
+    border-color: #D4AF37 !important;
+    opacity: 1 !important;
+}
+
+.tag-btn.bg-gold:focus,
+.tag-btn.bg-gold:hover,
+.tag-btn.bg-gold:active {
+    background-color: #D4AF37 !important;
+    color: #000000 !important;
+    border-color: #D4AF37 !important;
+    opacity: 1 !important;
+}
+

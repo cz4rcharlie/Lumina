@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Echo · 回响 | 潜意识映射</title>
+    <title>Lumina · 流光 | 潜意识映射</title>
     
     <!-- 资源预加载优化（DNS预解析） -->
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
@@ -24,72 +24,12 @@
         }
     </style>
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        void: '#050511',     // 虚空黑
-                        gold: '#D4AF37',     // 复古金
-                        lavender: '#E6E6FA', // 薰衣草雾
-                        nebula: '#2D1B4E',   // 星云紫
-                    },
-                    fontFamily: {
-                        serif: ['"Noto Serif SC"', 'serif'],
-                        sans: ['"Inter"', 'sans-serif'],
-                    },
-                    animation: {
-                        'breathe': 'breathe 4s ease-in-out infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'spin-slow': 'spin 12s linear infinite',
-                    },
-                    keyframes: {
-                        breathe: {
-                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-                            '50%': { opacity: '1', transform: 'scale(1.1)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- 外部CSS文件 -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
     
-    <style>
-        /* 全局样式微调 */
-        body {
-            background-color: #050511;
-            color: #E6E6FA;
-            overflow: hidden; /* 防止滚动 */
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        /* 噪点背景纹理 */
-        .noise-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* 磨砂玻璃卡片 */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        /* 隐藏滚动条 */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-    </style>
+    <!-- Tailwind配置 -->
+    <script src="js/config.js"></script>
 </head>
 <body class="h-screen w-screen flex items-center justify-center font-sans relative">
 
@@ -100,31 +40,216 @@
 
     <main id="app" class="relative z-10 w-full max-w-md h-full flex flex-col items-center justify-center p-6 transition-opacity duration-1000">
         
-        <section id="page-entrance" class="flex flex-col items-center justify-center w-full h-full text-center">
-            <div class="mb-8">
-                <h1 class="font-serif text-2xl text-gold tracking-[0.2em] mb-4">ECHO</h1>
-                <p class="text-slate-400 text-sm tracking-widest font-light opacity-80 mb-8">向宇宙提问前，请先诚实面对自己</p>
+        <section id="page-entrance" class="flex flex-col items-center justify-center w-full h-full text-center relative overflow-hidden">
+            <!-- 超大背景卡牌 - 增强视觉冲击 -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                <!-- 背景大卡片 - 模糊且放大 -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vh] opacity-20" style="perspective: 2000px;">
+                    <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f0f1a] border-4 border-gold/20 transform rotate-12 scale-110 blur-[60px]" style="box-shadow: 0 0 200px rgba(212, 175, 55, 0.3), inset 0 0 300px rgba(212, 175, 55, 0.1); perspective: inherit;">
+                        <div class="absolute inset-0 opacity-15" style="background-image: 
+                            radial-gradient(circle at 35% 35%, rgba(255,255,255,0.4) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 65% 65%, rgba(255,255,255,0.35) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 25% 75%, rgba(255,255,240,0.3) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 75% 25%, rgba(255,255,255,0.4) 0.5px, transparent 0.5px);
+                            background-size: 180px 180px, 160px 160px, 200px 200px, 170px 170px;
+                            background-repeat: repeat;
+                            animation: starry-flow-deep 50s linear infinite, twinkle-slow 7s ease-in-out infinite;"></div>
+                        <!-- Deep layer: sparse small white stars, slow flow -->
+                        <div class="absolute inset-0 opacity-20" style="background-image: 
+                            radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 70% 70%, rgba(255,255,255,0.4) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 20% 80%, rgba(255,255,255,0.45) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.4) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 10% 50%, rgba(255,255,255,0.42) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 90% 50%, rgba(255,255,255,0.38) 0.5px, transparent 0.5px),
+                            radial-gradient(circle at 50% 10%, rgba(255,255,255,0.45) 0.5px, transparent 0.5px);
+                            background-size: 200px 200px, 180px 180px, 220px 220px, 190px 190px, 210px 210px, 195px 195px, 205px 205px;
+                            background-repeat: repeat;
+                            animation: starry-flow-deep 60s linear infinite, twinkle-slow 8s ease-in-out infinite;"></div>
+                        <!-- Mid layer: medium stars with subtle color, medium flow -->
+                        <div class="absolute inset-0 opacity-35" style="background-image: 
+                            radial-gradient(circle at 40% 40%, rgba(255,255,255,0.7) 1px, transparent 1px),
+                            radial-gradient(circle at 60% 60%, rgba(212,175,55,0.3) 0.8px, transparent 0.8px),
+                            radial-gradient(circle at 25% 75%, rgba(255,255,255,0.65) 1px, transparent 1px),
+                            radial-gradient(circle at 75% 25%, rgba(230,230,250,0.4) 0.9px, transparent 0.9px),
+                            radial-gradient(circle at 50% 50%, rgba(255,255,255,0.6) 1px, transparent 1px),
+                            radial-gradient(circle at 15% 35%, rgba(212,175,55,0.25) 0.8px, transparent 0.8px),
+                            radial-gradient(circle at 85% 65%, rgba(255,255,255,0.68) 1px, transparent 1px),
+                            radial-gradient(circle at 35% 85%, rgba(230,230,250,0.45) 0.9px, transparent 0.9px);
+                            background-size: 150px 150px, 140px 140px, 160px 160px, 130px 130px, 170px 170px, 155px 155px, 145px 145px, 165px 165px;
+                            background-repeat: repeat;
+                            animation: starry-flow-mid 45s linear infinite, twinkle-natural 5s ease-in-out infinite;"></div>
+                        <!-- Bright layer: few large stars with faint halo, slow reverse flow -->
+                        <div class="absolute inset-0 opacity-50" style="background-image: 
+                            radial-gradient(circle at 35% 35%, rgba(255,255,255,0.9) 2px, rgba(255,255,255,0.2) 3px, transparent 4px),
+                            radial-gradient(circle at 65% 65%, rgba(255,255,220,0.85) 2px, rgba(255,255,220,0.15) 3px, transparent 4px),
+                            radial-gradient(circle at 50% 50%, rgba(212,175,55,0.4) 1.5px, rgba(212,175,55,0.1) 2.5px, transparent 3px),
+                            radial-gradient(circle at 20% 20%, rgba(255,255,255,0.88) 2px, rgba(255,255,255,0.18) 3px, transparent 4px),
+                            radial-gradient(circle at 80% 80%, rgba(255,255,220,0.82) 2px, rgba(255,255,220,0.12) 3px, transparent 4px);
+                            background-size: 250px 250px, 230px 230px, 270px 270px, 240px 240px, 260px 260px;
+                            background-repeat: repeat;
+                            animation: starry-flow-bright 70s linear infinite, twinkle-natural 4s ease-in-out infinite;"></div>
+                        <!-- 优化背景多彩星层 - 大幅简化 -->
+                        <div class="absolute inset-0 opacity-30 starry-layer" style="background-image:
+                            radial-gradient(circle at 25% 25%, rgba(255,255,255,0.6) 1px, transparent 1px),
+                            radial-gradient(circle at 75% 75%, rgba(212,175,55,0.4) 0.8px, transparent 0.8px),
+                            radial-gradient(circle at 50% 10%, rgba(230,230,250,0.5) 0.9px, transparent 0.9px),
+                            radial-gradient(circle at 10% 60%, rgba(255,255,255,0.7) 1px, transparent 1px),
+                            radial-gradient(circle at 90% 40%, rgba(212,175,55,0.3) 0.7px, transparent 0.7px);
+                            background-size: 150px 150px;
+                            background-repeat: repeat;
+                            animation: twinkle-simple 10s ease-in-out infinite;
+                            will-change: opacity;"></div>
+                    </div>
+            </div>
+
+                <!-- 多层光效背景 -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] bg-gold/8 rounded-full blur-[150px] animate-glow-pulse"></div>
+                <div class="absolute top-1/3 right-1/4 w-[80vw] h-[80vw] bg-nebula/15 rounded-full blur-[120px] animate-glow-pulse" style="animation-delay: 1s;"></div>
+                <div class="absolute bottom-1/4 left-1/4 w-[60vw] h-[60vw] bg-indigo-900/25 rounded-full blur-[100px] animate-glow-pulse" style="animation-delay: 2s;"></div>
+                
+                <!-- 神秘粒子效果 -->
+                <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-gold/40 rounded-full blur-sm animate-particle-float" style="animation-delay: 0s; box-shadow: 0 0 20px #D4AF37;"></div>
+                <div class="absolute top-2/3 right-1/4 w-2 h-2 bg-gold/50 rounded-full blur-sm animate-particle-float" style="animation-delay: 1.5s; box-shadow: 0 0 15px #D4AF37;"></div>
+                <div class="absolute bottom-1/3 left-1/5 w-2.5 h-2.5 bg-gold/30 rounded-full blur-sm animate-particle-float" style="animation-delay: 3s; box-shadow: 0 0 18px #D4AF37;"></div>
+                <div class="absolute top-1/2 right-1/3 w-2 h-2 bg-nebula/40 rounded-full blur-sm animate-particle-float" style="animation-delay: 4.5s; box-shadow: 0 0 15px #2D1B4E;"></div>
+            </div>
+
+            <!-- 中心悬浮卡牌背面（全息质感）- 更大尺寸增强冲击感 -->
+            <div class="relative mb-6 z-20" id="entrance-card" style="perspective: 1000px;">
+                <div class="relative w-64 h-96 md:w-72 md:h-[28rem] transform-gpu transition-transform duration-300" id="card-3d">
+                    <!-- 外发光光晕 -->
+                    <div class="absolute inset-0 -m-8 rounded-2xl bg-gold/20 blur-[40px] animate-breathe opacity-50"></div>
+                    
+                    <!-- 卡牌背面多层效果 -->
+                    <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f0f1a] border-2 border-gold/50 shadow-2xl overflow-hidden flex flex-col" style="box-shadow: 0 0 80px rgba(212, 175, 55, 0.5), inset 0 0 120px rgba(212, 175, 55, 0.2);">
+                        <!-- 优化基础星空层 - 使用更少的渐变，性能更好 -->
+                        <div class="absolute inset-0 opacity-25 starry-layer" style="background-image:
+                            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+                            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+                            radial-gradient(circle at 15% 70%, rgba(255, 255, 240, 0.5) 1px, transparent 1px),
+                            radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+                            radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.55) 1px, transparent 1px),
+                            radial-gradient(circle at 30% 85%, rgba(255, 255, 240, 0.4) 1px, transparent 1px);
+                            background-size: 120px 120px;
+                            background-repeat: repeat;
+                            animation: starry-flow-simple 8s linear infinite, twinkle-simple 8s ease-in-out infinite;
+                            will-change: transform;"></div>
+                        
+                        <!-- 优化亮星层 - 减少数量，使用百分比定位 -->
+                        <div class="absolute inset-0 opacity-40 starry-layer" style="background-image:
+                            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.8) 1.5px, transparent 1.5px),
+                            radial-gradient(circle at 75% 15%, rgba(255, 255, 240, 0.7) 1.5px, transparent 1.5px),
+                            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+                            radial-gradient(circle at 80% 85%, rgba(255, 255, 255, 0.65) 1.5px, transparent 1.5px),
+                            radial-gradient(circle at 50% 10%, rgba(255, 255, 240, 0.7) 1.5px, transparent 1.5px),
+                            radial-gradient(circle at 35% 60%, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px);
+                            background-size: 140px 140px;
+                            background-repeat: repeat;
+                            animation: starry-flow-simple 6s linear infinite reverse, twinkle-simple 6s ease-in-out infinite;
+                            will-change: transform;"></div>
+                        
+                        <!-- 优化主星层 - 重点星星，更少的数量 -->
+                        <div class="absolute inset-0 opacity-50 starry-layer" style="background-image:
+                            radial-gradient(circle at 30% 30%, rgba(255, 255, 200, 0.9) 2px, transparent 2px),
+                            radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.85) 2px, transparent 2px),
+                            radial-gradient(circle at 20% 80%, rgba(255, 255, 220, 0.8) 2px, transparent 2px),
+                            radial-gradient(circle at 80% 90%, rgba(255, 255, 255, 0.9) 2px, transparent 2px),
+                            radial-gradient(circle at 50% 15%, rgba(255, 255, 200, 0.85) 2px, transparent 2px);
+                            background-size: 160px 160px;
+                            background-repeat: repeat;
+                            animation: starry-flow-simple 10s linear infinite, twinkle-simple 5s ease-in-out infinite reverse;
+                            will-change: transform;"></div>
+                        
+                        <!-- 闪烁光效层 -->
+                        <div class="absolute inset-0 opacity-30" style="background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.1) 25%, transparent 50%, rgba(212, 175, 55, 0.1) 75%, transparent 100%); background-size: 300% 300%; animation: shimmer 6s linear infinite;"></div>
+                        
+                        <!-- 优化静态多彩星层 - 减少到8个，使用伪随机分布 -->
+                        <div class="absolute inset-0 opacity-45 starry-layer" style="background-image:
+                            radial-gradient(circle at 10% 15%, rgba(255,255,255,0.8) 1px, transparent 1px),
+                            radial-gradient(circle at 25% 35%, rgba(212,175,55,0.6) 0.8px, transparent 0.8px),
+                            radial-gradient(circle at 40% 20%, rgba(230,230,250,0.7) 0.9px, transparent 0.9px),
+                            radial-gradient(circle at 55% 45%, rgba(255,255,255,0.9) 1px, transparent 1px),
+                            radial-gradient(circle at 70% 30%, rgba(212,175,55,0.5) 0.8px, transparent 0.8px),
+                            radial-gradient(circle at 85% 65%, rgba(255,255,255,0.8) 0.9px, transparent 0.9px),
+                            radial-gradient(circle at 30% 80%, rgba(230,230,250,0.6) 0.8px, transparent 0.8px),
+                            radial-gradient(circle at 60% 90%, rgba(212,175,55,0.7) 0.9px, transparent 0.9px);
+                            background-size: 80px 80px;
+                            background-repeat: repeat;
+                            animation: twinkle-simple 7s ease-in-out infinite;
+                            will-change: opacity;"></div>
+                        <!-- 上半部分：LOGO和几何图案 -->
+                        <div class="flex-1 flex flex-col items-center justify-center relative z-30 pointer-events-none pt-6 pb-2">
+                            <!-- LUMINA Logo - 适配卡牌大小 -->
+                            <div class="mb-3">
+                                <h1 class="font-serif text-3xl md:text-4xl text-gold tracking-[0.3em] animate-pulse mb-2" style="text-shadow: 0 0 30px rgba(212, 175, 55, 1), 0 0 60px rgba(212, 175, 55, 0.6), 0 0 90px rgba(212, 175, 55, 0.3);">LUMINA</h1>
+                                <div class="w-24 h-0.5 bg-gold/60 mx-auto animate-pulse" style="box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);"></div>
+                        </div>
+                        
+                            <!-- 中心几何图案 - 更大更复杂 -->
+                            <div class="mt-1">
+                                <div class="w-32 h-32 md:w-36 md:h-36 border-2 border-gold/40 rounded-full flex items-center justify-center animate-spin-slow" style="box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);">
+                                    <div class="w-24 h-24 md:w-28 md:h-28 border-2 border-gold/30 transform rotate-45 rounded-xl"></div>
+                                    <div class="absolute w-20 h-20 md:w-24 md:h-24 border border-gold/20 rounded-full"></div>
+                                    <div class="absolute w-12 h-12 md:w-14 md:h-14 border border-gold/15 rounded-lg transform rotate-12"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        <!-- 下半部分：文案 -->
+                        <div class="relative z-30 pointer-events-none pb-5 px-4 mt-auto">
+                            <div class="border-t border-gold/20 pt-3">
+                                <p class="text-slate-200 text-xs md:text-sm tracking-[0.2em] font-light mb-1 opacity-95 text-center" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);">向宇宙提问前</p>
+                                <p class="text-slate-400 text-[10px] md:text-xs tracking-[0.12em] font-light opacity-80 text-center">请先诚实面对自己</p>
+                </div>
+            </div>
+
+                        <!-- 增强光效装饰 - 固定位置大星星（随机分布） -->
+                        <div class="absolute top-[7%] left-[23%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 0s; box-shadow: 0 0 20px #D4AF37, 0 0 40px #D4AF37;"></div>
+                        <div class="absolute top-[33%] right-[19%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.5s; box-shadow: 0 0 18px #D4AF37, 0 0 35px #D4AF37;"></div>
+                        <div class="absolute bottom-[27%] left-[31%] w-2 h-2 bg-gold/50 rounded-full animate-pulse" style="animation-delay: 1s; box-shadow: 0 0 15px #D4AF37, 0 0 30px #D4AF37;"></div>
+                        <div class="absolute top-[52%] right-[34%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 1.5s; box-shadow: 0 0 16px #D4AF37, 0 0 32px #D4AF37;"></div>
+                        <div class="absolute top-[16%] left-[59%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 0.25s; box-shadow: 0 0 20px #D4AF37, 0 0 40px #D4AF37;"></div>
+                        <div class="absolute bottom-[21%] right-[14%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.75s; box-shadow: 0 0 18px #D4AF37, 0 0 35px #D4AF37;"></div>
+                        <div class="absolute top-[71%] left-[11%] w-2.5 h-2.5 bg-gold/65 rounded-full animate-pulse" style="animation-delay: 1.25s; box-shadow: 0 0 18px #D4AF37, 0 0 35px #D4AF37;"></div>
+                        <div class="absolute bottom-[16%] right-[54%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 1.75s; box-shadow: 0 0 20px #D4AF37, 0 0 40px #D4AF37;"></div>
+                        <div class="absolute top-[9%] right-[8%] w-2 h-2 bg-gold/55 rounded-full animate-pulse" style="animation-delay: 0.4s; box-shadow: 0 0 15px #D4AF37, 0 0 30px #D4AF37;"></div>
+                        <div class="absolute bottom-[11%] left-[74%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.9s; box-shadow: 0 0 18px #D4AF37, 0 0 35px #D4AF37;"></div>
+                        <div class="absolute top-[78%] left-[47%] w-2.5 h-2.5 bg-gold/75 rounded-full animate-pulse" style="animation-delay: 0.3s; box-shadow: 0 0 18px #D4AF37, 0 0 35px #D4AF37;"></div>
+                        <div class="absolute top-[6%] left-[41%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.6s; box-shadow: 0 0 15px #D4AF37, 0 0 30px #D4AF37;"></div>
+                        <div class="absolute bottom-[8%] right-[37%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 1.1s; box-shadow: 0 0 18px #D4AF37, 0 0 35px #D4AF37;"></div>
+                        <div class="absolute top-[44%] left-[9%] w-2 h-2 bg-gold/55 rounded-full animate-pulse" style="animation-delay: 0.8s; box-shadow: 0 0 15px #D4AF37, 0 0 30px #D4AF37;"></div>
+                        <div class="absolute bottom-[48%] right-[11%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 1.3s; box-shadow: 0 0 20px #D4AF37, 0 0 40px #D4AF37;"></div>
+                        <div class="absolute top-[63%] left-[82%] w-2 h-2 bg-gold/65 rounded-full animate-pulse" style="animation-delay: 0.55s; box-shadow: 0 0 15px #D4AF37, 0 0 30px #D4AF37;"></div>
+                        <div class="absolute bottom-[42%] right-[79%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 1.05s; box-shadow: 0 0 18px #D4AF37, 0 0 35px #D4AF37;"></div>
+                        <div class="absolute top-[86%] left-[28%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.35s; box-shadow: 0 0 15px #D4AF37, 0 0 30px #D4AF37;"></div>
             </div>
             
-            <!-- 标签选择 -->
-            <div class="flex flex-wrap justify-center gap-3 px-6 mb-8" id="tag-container">
-                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="love_crush">暧昧/暗恋</button>
-                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="love_partner">伴侣/复合</button>
-                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="career_change">跳槽/迷茫</button>
-                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="wealth">搞钱/财运</button>
-                <button class="tag-btn px-4 py-2 border border-gold/30 text-gold/70 text-sm rounded-full hover:bg-gold/10 hover:border-gold transition-all" data-tag="self_growth">近期指引</button>
+                    <!-- 全息反光效果 - 增强 -->
+                    <div class="absolute inset-0 rounded-2xl pointer-events-none" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, transparent 40%, rgba(212, 175, 55, 0.1) 60%, transparent 100%); mix-blend-mode: overlay;"></div>
+                </div>
             </div>
             
-            <div class="relative group cursor-pointer" id="start-btn" style="opacity: 0; pointer-events: none;">
-                <div class="absolute inset-0 bg-gold rounded-full blur-[20px] opacity-20 group-hover:opacity-40 transition duration-700 animate-breathe"></div>
-                <div class="w-24 h-24 rounded-full border border-gold/30 flex items-center justify-center relative bg-void/50 backdrop-blur-sm">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-nebula to-transparent opacity-80"></div>
-                    <svg class="w-8 h-8 text-gold absolute animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            <!-- 标签选择 - 优化样式和间距，上移 -->
+            <div class="relative z-20 flex flex-wrap justify-center gap-2.5 px-6 mb-5" id="tag-container">
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="love_crush" style="animation-delay: 0s; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);">暧昧/暗恋</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="love_partner" style="animation-delay: 0.2s; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);">伴侣/复合</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="career_change" style="animation-delay: 0.4s; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);">跳槽/迷茫</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="wealth" style="animation-delay: 0.6s; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);">搞钱/财运</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="self_growth" style="animation-delay: 0.8s; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);">近期指引</button>
+            </div>
+            
+            <!-- 开始按钮 - 更大更醒目，上移 -->
+            <div class="relative z-20 group cursor-pointer -mt-1" id="start-btn" style="opacity: 0; pointer-events: none;">
+                <div class="absolute inset-0 bg-gold rounded-full blur-[40px] opacity-40 group-hover:opacity-60 transition duration-700 animate-breathe"></div>
+                <div class="w-32 h-32 md:w-36 md:h-36 rounded-full border-2 border-gold/60 flex items-center justify-center relative bg-void/70 backdrop-blur-md group-hover:border-gold transition-all" style="box-shadow: 0 0 40px rgba(212, 175, 55, 0.5), inset 0 0 50px rgba(212, 175, 55, 0.15);">
+                    <div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-tr from-gold/40 via-nebula/30 to-transparent opacity-90 animate-spin-slow"></div>
+                    <svg class="w-12 h-12 md:w-14 md:h-14 text-gold absolute animate-pulse group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 12px rgba(212, 175, 55, 1));">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
                 </div>
             </div>
-            <p class="text-slate-500 text-xs mt-4" id="start-hint">请先选择你的问题</p>
+            <p class="relative z-20 text-slate-300 text-xs md:text-sm mt-3 animate-pulse" id="start-hint" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);">请先选择你的问题</p>
         </section>
 
         <section id="page-ritual" class="hidden flex-col items-center justify-center w-full h-full py-8" style="opacity: 0;">
@@ -182,13 +307,25 @@
         </section>
 
         <section id="page-result" class="hidden flex-col w-full h-full py-4 overflow-y-auto hide-scrollbar" style="opacity: 0;">
-            <div class="flex justify-between items-center w-full px-4 mb-4 opacity-60">
-                <span class="text-[10px] font-mono tracking-widest">2024.03.21</span>
+            <!-- 顶部：日期、月相、正逆位标志（小且不显眼） -->
+            <div class="flex justify-between items-center w-full px-4 mb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-xs font-mono tracking-widest text-white/50">2024.03.21</span>
                 <span class="text-lg">🌘</span>
+                </div>
+                <!-- 正逆位标志 - 右上角，小且低调 -->
+                <div class="opacity-0" id="result-position-anim">
+                    <span class="text-[10px] text-white/30 font-mono tracking-widest uppercase">UPRIGHT</span>
+                </div>
             </div>
 
-            <div class="flex justify-center mb-4 transform transition-all duration-1000 translate-y-4 opacity-0" id="result-card-anim">
-                <div class="relative" style="width: 200px; height: 320px;">
+            <!-- 卡片名称 - 放在卡片上方 -->
+            <div class="text-center mb-4 opacity-0" id="result-name-anim">
+                <h2 class="font-serif text-2xl text-gold">愚 人</h2>
+            </div>
+
+            <div class="flex justify-center mb-5 transform transition-all duration-1000 translate-y-4 opacity-0" id="result-card-anim">
+                <div class="relative" style="width: 220px; height: 352px;">
                     <!-- 外发光边框 -->
                     <div class="absolute inset-0 rounded-xl" style="box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.1);"></div>
                     <!-- 主边框 -->
@@ -197,43 +334,46 @@
                     <div class="absolute inset-[2px] rounded-lg border border-gold/30"></div>
                     <!-- 卡片内容 -->
                     <div class="relative w-full h-full bg-void/90 rounded-lg overflow-hidden" id="card-content">
-                        <div class="absolute inset-0 bg-gradient-to-b from-gray-800 to-black flex items-center justify-center">
-                            <span class="font-serif text-6xl opacity-20 text-white">0</span>
-                            <p class="absolute bottom-4 text-xs text-white/30 tracking-[0.5em] uppercase">The Fool</p>
+                    <div class="absolute inset-0 bg-gradient-to-b from-gray-800 to-black flex items-center justify-center">
+                        <span class="font-serif text-6xl opacity-20 text-white">0</span>
+                        <p class="absolute bottom-4 text-xs text-white/30 tracking-[0.5em] uppercase">The Fool</p>
                         </div>
                     </div>
-                </div>
+                    </div>
             </div>
 
-            <div class="space-y-3 text-center px-4 opacity-0" id="result-text-anim">
+            <div class="space-y-4 text-center px-4 opacity-0" id="result-text-anim">
+                <!-- 关键词 - 更突出，使用衬线体 -->
                 <div>
-                    <h2 class="font-serif text-2xl text-gold mb-1.5">愚 人</h2>
-                    <div class="flex justify-center gap-2 text-xs text-slate-400 font-light">
-                        <span class="border border-white/10 px-2 py-1 rounded">#无限可能</span>
-                        <span class="border border-white/10 px-2 py-1 rounded">#盲目勇气</span>
+                    <div class="flex justify-center gap-2.5">
+                        <span class="font-serif text-sm text-gold/90 border border-gold/30 px-3 py-1.5 rounded-full bg-gold/5">#无限可能</span>
+                        <span class="font-serif text-sm text-gold/90 border border-gold/30 px-3 py-1.5 rounded-full bg-gold/5">#盲目勇气</span>
                     </div>
                 </div>
 
-                <div class="relative py-3">
-                    <span class="absolute top-0 left-0 text-3xl text-gold/20 font-serif">"</span>
-                    <p class="text-xs leading-relaxed text-slate-200 font-light text-justify px-4">
+                <!-- 文案 - 更大字号，更好行高 -->
+                <div class="relative py-4">
+                    <span class="absolute top-0 left-0 text-2xl text-gold/20 font-serif leading-none">"</span>
+                    <p class="text-sm leading-loose text-slate-200 font-light text-justify px-6">
                         你正站在悬崖边缘，但不必恐惧坠落。现在的你拥有一种"不知天高地厚"的幸运，逻辑和规划此刻只会束缚你。闭上眼，跳下去，风会接住你。
                     </p>
-                    <span class="absolute bottom-0 right-0 text-3xl text-gold/20 font-serif">"</span>
+                    <span class="absolute bottom-0 right-0 text-2xl text-gold/20 font-serif leading-none">"</span>
                 </div>
 
-                <div class="bg-white/5 rounded-lg p-3 border border-white/5">
-                    <p class="text-xs text-gold/60 mb-1 uppercase tracking-widest">Action</p>
-                    <p class="text-xs text-white">做一件平时绝对不敢做的傻事。</p>
+                <!-- Action建议 - 更突出 -->
+                <div class="bg-white/5 rounded-lg p-4 border border-white/10">
+                    <p class="text-xs text-gold/70 mb-1.5 uppercase tracking-widest font-medium">Action</p>
+                    <p class="text-sm text-white leading-relaxed">做一件平时绝对不敢做的傻事。</p>
                 </div>
 
-                <div class="flex justify-between items-center pt-3 border-t border-white/10">
+                <!-- 社交货币 - 放在底部 -->
+                <div class="flex justify-between items-center pt-4 border-t border-white/10">
                     <div class="text-left">
-                        <p class="text-[10px] text-slate-500">宇宙信号</p>
+                        <p class="text-[10px] text-slate-500 mb-1">宇宙信号</p>
                         <p class="font-mono text-gold text-base">777</p>
                     </div>
                     <div class="text-right">
-                        <p class="text-[10px] text-slate-500">幸运光晕</p>
+                        <p class="text-[10px] text-slate-500 mb-1">幸运光晕</p>
                         <div class="flex items-center justify-end gap-2">
                             <span class="text-xs text-slate-300">星尘白</span>
                             <div class="w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
@@ -255,640 +395,17 @@
 
     </main>
 
-    <script>
-        // ========== 全局状态 ==========
-        let cardsData = [];
-        let selectedTag = null;
-        let currentResult = null;
-        
-        // 状态机
-        const pages = {
-            entrance: document.getElementById('page-entrance'),
-            ritual: document.getElementById('page-ritual'),
-            loading: document.getElementById('page-loading'),
-            result: document.getElementById('page-result')
-        };
+    <!-- 作者信息 - 不显眼位置 -->
+    <div class="fixed bottom-2 right-2 z-10 pointer-events-none">
+        <p class="text-[10px] text-white/40 font-mono tracking-wider">designed by: 筑梦查理</p>
+    </div>
 
-        // ========== 工具函数 ==========
-        function switchPage(from, to) {
-            from.style.opacity = '0';
-            setTimeout(() => {
-                from.classList.add('hidden');
-                to.classList.remove('hidden');
-                void to.offsetWidth; 
-                to.style.opacity = '1';
-                to.style.transition = 'opacity 0.5s ease-in';
-            }, 500);
-        }
-
-        // FNV-1a Hash算法
-        function fnv1aHash(str) {
-            let hash = 2166136261;
-            for (let i = 0; i < str.length; i++) {
-                hash ^= str.charCodeAt(i);
-                hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
-            }
-            return hash >>> 0; // 转为无符号32位整数
-        }
-
-        // 生成灵数（基于Hash）
-        function generateAngelNumber(hash) {
-            const numbers = [111, 222, 333, 444, 555, 666, 777, 888, 999, 1212, 1313, 1414];
-            return numbers[Math.abs(hash) % numbers.length];
-        }
-
-        // 生成幸运色（基于Hash）
-        function generateAuraColor(hash) {
-            const colors = [
-                { name: '星尘白', code: '#FFFFFF' },
-                { name: '香槟金', code: '#D4AF37' },
-                { name: '薰衣草紫', code: '#E6E6FA' },
-                { name: '深空蓝', code: '#2D1B4E' },
-                { name: '玫瑰金', code: '#E8B4B8' },
-                { name: '月光银', code: '#C0C0C0' },
-                { name: '翡翠绿', code: '#50C878' },
-                { name: '琥珀橙', code: '#FFBF00' }
-            ];
-            return colors[Math.abs(hash) % colors.length];
-        }
-
-        // 获取当前日期
-        function getCurrentDate() {
-            const now = new Date();
-            return `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
-        }
-
-        // 获取月相图标
-        function getMoonPhase() {
-            const phases = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
-            const day = new Date().getDate();
-            return phases[day % phases.length];
-        }
-
-        // ========== 数据加载 ==========
-        async function loadCardsData() {
-            try {
-                const response = await fetch('MajorArcana22.json');
-                cardsData = await response.json();
-                console.log('卡牌数据加载成功:', cardsData.length, '张');
-            } catch (error) {
-                console.error('加载卡牌数据失败:', error);
-                alert('数据加载失败，请刷新页面重试');
-            }
-        }
-
-        // ========== 标签选择 ==========
-        function initTagSelection() {
-            const tagButtons = document.querySelectorAll('.tag-btn');
-            const startBtn = document.getElementById('start-btn');
-            const startHint = document.getElementById('start-hint');
-            
-            tagButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // 移除其他按钮的选中状态
-                    tagButtons.forEach(b => {
-                        b.classList.remove('bg-gold', 'text-black', 'border-gold');
-                        b.classList.add('border-gold/30', 'text-gold/70');
-                    });
-                    
-                    // 选中当前按钮
-                    btn.classList.add('bg-gold', 'text-black', 'border-gold');
-                    btn.classList.remove('border-gold/30', 'text-gold/70');
-                    
-                    selectedTag = btn.dataset.tag;
-                    
-                    // 显示开始按钮
-                    startBtn.style.opacity = '1';
-                    startBtn.style.pointerEvents = 'auto';
-                    startHint.textContent = '点击注入能量 · 开启链接';
-                });
-            });
-        }
-
-        // ========== 开始旅程 ==========
-        function startJourney() {
-            if (!selectedTag) {
-                alert('请先选择你的问题');
-                return;
-            }
-            
-            // 请求陀螺仪权限（iOS）
-            if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-                DeviceMotionEvent.requestPermission()
-                    .then(response => {
-                        if (response === 'granted') {
-                            proceedToRitual();
-                        } else {
-                            // 降级为触摸滑动
-                            proceedToRitual(true);
-                        }
-                    })
-                    .catch(() => {
-                        proceedToRitual(true);
-                    });
-            } else {
-                proceedToRitual();
-            }
-        }
-
-        function proceedToRitual(useTouch = false) {
-            pages.entrance.classList.add('animate-pulse');
-            setTimeout(() => {
-                switchPage(pages.entrance, pages.ritual);
-                startRitualLogic(useTouch);
-            }, 800);
-        }
-
-        // ========== 混沌洗牌算法 ==========
-        function startRitualLogic(useTouch = false) {
-            const progressBar = document.getElementById('progress-bar');
-            const deckCard = document.getElementById('deck-card');
-            const actionText = document.getElementById('action-text');
-            
-            // 熵数据收集
-            let entropyData = [];
-            let lastSampleTime = Date.now();
-            let lastX = 0, lastY = 0;
-            let lastAlpha = 0, lastBeta = 0, lastGamma = 0;
-            
-            // 进度条在3秒内逐渐填满
-            progressBar.style.width = '0%';
-            setTimeout(() => {
-                progressBar.style.width = '100%';
-            }, 50);
-
-            // 数据采样函数（每100ms采样一次）
-            function sampleData() {
-                const now = Date.now();
-                const timestamp = now;
-                
-                if (useTouch) {
-                    // 触摸模式：使用鼠标/触摸位置
-                    entropyData.push({
-                        x: lastX,
-                        y: lastY,
-                        time: timestamp
-                    });
-                } else {
-                    // 陀螺仪模式：使用设备运动数据
-                    entropyData.push({
-                        alpha: lastAlpha,
-                        beta: lastBeta,
-                        gamma: lastGamma,
-                        time: timestamp
-                    });
-                }
-            }
-
-            // 鼠标/触摸事件监听
-            let mouseMoveHandler, touchMoveHandler;
-            
-            if (useTouch) {
-                actionText.textContent = '请用手指在屏幕画圆';
-                
-                mouseMoveHandler = (e) => {
-                    lastX = e.clientX;
-                    lastY = e.clientY;
-                };
-                
-                touchMoveHandler = (e) => {
-                    if (e.touches.length > 0) {
-                        lastX = e.touches[0].clientX;
-                        lastY = e.touches[0].clientY;
-                    }
-                };
-                
-                document.addEventListener('mousemove', mouseMoveHandler);
-                document.addEventListener('touchmove', touchMoveHandler);
-            } else {
-                actionText.textContent = '请摇晃手机';
-                
-                // 陀螺仪事件监听
-                const deviceMotionHandler = (e) => {
-                    if (e.rotationRate) {
-                        lastAlpha = e.rotationRate.alpha || 0;
-                        lastBeta = e.rotationRate.beta || 0;
-                        lastGamma = e.rotationRate.gamma || 0;
-                    }
-                };
-                
-                window.addEventListener('devicemotion', deviceMotionHandler);
-                
-                // 清理函数
-                window.cleanupDeviceMotion = () => {
-                    window.removeEventListener('devicemotion', deviceMotionHandler);
-                };
-            }
-
-            // 采样定时器（每100ms）
-            const sampleInterval = setInterval(sampleData, 100);
-            
-            // 视觉反馈定时器（每150ms，更流畅的动画）
-            let shakeCount = 0;
-            let lastRotation = 0;
-            let lastTranslateX = 0;
-            let lastTranslateY = 0;
-            
-            const visualInterval = setInterval(() => {
-                shakeCount++;
-                
-                // 计算进度（0-1）
-                const progress = shakeCount / 20; // 3秒 = 20次 * 150ms
-                
-                // 根据进度调整动画强度（开始强烈，逐渐减弱）
-                const intensity = 1 - (progress * 0.3); // 从1.0到0.7
-                
-                // 平滑的随机旋转（使用缓动，避免突变）
-                const targetRot = (Math.random() * 12 - 6) * intensity;
-                const targetX = (Math.random() * 12 - 6) * intensity;
-                const targetY = (Math.random() * 8 - 4) * intensity;
-                
-                // 平滑过渡（避免突然跳动）
-                lastRotation = lastRotation * 0.6 + targetRot * 0.4;
-                lastTranslateX = lastTranslateX * 0.6 + targetX * 0.4;
-                lastTranslateY = lastTranslateY * 0.6 + targetY * 0.4;
-                
-                // 添加轻微的缩放效果（呼吸感）
-                const scale = 1 + Math.sin(shakeCount * 0.3) * 0.02;
-                
-                // 应用变换
-                deckCard.style.transform = `
-                    rotate(${lastRotation}deg) 
-                    translate(${lastTranslateX}px, ${lastTranslateY}px)
-                    scale(${scale})
-                `;
-                
-                // 添加光效强度变化
-                const glowIntensity = 0.3 + Math.sin(shakeCount * 0.5) * 0.2;
-                deckCard.style.boxShadow = `
-                    0 0 ${30 * glowIntensity}px rgba(212, 175, 55, ${0.3 * glowIntensity}),
-                    inset 0 0 ${60 * glowIntensity}px rgba(212, 175, 55, ${0.1 * glowIntensity})
-                `;
-                
-                // 震动反馈（只在特定时机）
-                if (navigator.vibrate && !useTouch && shakeCount % 3 === 0) {
-                    navigator.vibrate(30);
-                }
-                
-                if (shakeCount >= 20) { // 3秒后（20次 * 150ms = 3000ms）
-                    clearInterval(sampleInterval);
-                    clearInterval(visualInterval);
-                    
-                    // 清理事件监听
-                    if (useTouch) {
-                        document.removeEventListener('mousemove', mouseMoveHandler);
-                        document.removeEventListener('touchmove', touchMoveHandler);
-                    } else if (window.cleanupDeviceMotion) {
-                        window.cleanupDeviceMotion();
-                    }
-                    
-                    // 最终动画：卡片回到中心并放大
-                    deckCard.style.transition = 'transform 0.5s ease-out, box-shadow 0.5s ease-out';
-                    deckCard.style.transform = 'rotate(0deg) translate(0, 0) scale(1.05)';
-                    deckCard.style.boxShadow = '0 0 40px rgba(212, 175, 55, 0.5), inset 0 0 80px rgba(212, 175, 55, 0.2)';
-                    
-                    // 延迟后进入加载页
-                    setTimeout(() => {
-                        // 计算Hash并抽取卡牌
-                        const hash = calculateHash(entropyData);
-                        const result = drawCard(hash);
-                        finishRitual(result);
-                    }, 500);
-                }
-            }, 150);
-        }
-
-        // 计算Hash值
-        function calculateHash(entropyData) {
-            if (entropyData.length === 0) {
-                // 如果没有数据，使用时间戳作为后备
-                entropyData = [{ time: Date.now(), x: Math.random(), y: Math.random() }];
-            }
-            
-            // 构建熵字符串
-            let entropyString = '';
-            entropyData.forEach(data => {
-                if (data.x !== undefined) {
-                    entropyString += `${data.x},${data.y},${data.time}`;
-                } else {
-                    entropyString += `${data.alpha},${data.beta},${data.gamma},${data.time}`;
-                }
-            });
-            
-            // 添加额外熵源
-            entropyString += Date.now().toString();
-            entropyString += Math.random().toString();
-            
-            return fnv1aHash(entropyString);
-        }
-
-        // 抽取卡牌
-        function drawCard(hash) {
-            const cardIndex = Math.abs(hash) % 22;
-            const isReversed = (hash % 2 !== 0);
-            const card = cardsData[cardIndex];
-            
-            return {
-                card: card,
-                isReversed: isReversed,
-                hash: hash
-            };
-        }
-
-        // ========== 完成仪式 -> 进入伪加载 ==========
-        function finishRitual(result) {
-            currentResult = result;
-            switchPage(pages.ritual, pages.loading);
-            
-            const loadingText = document.getElementById('loading-text');
-            const phrases = [
-                "正在链接潜意识频率...",
-                "捕捉环境磁场熵值...",
-                "星图矩阵校准中...",
-                "解读完成。"
-            ];
-            
-            let i = 0;
-            const textInterval = setInterval(() => {
-                if (i < phrases.length) {
-                loadingText.innerText = phrases[i];
-                i++;
-                } else {
-                    clearInterval(textInterval);
-                }
-            }, 800);
-
-            // 3.2秒后显示结果
-            setTimeout(() => {
-                showResult(result);
-            }, 3200);
-        }
-
-        // ========== 显示结果 ==========
-        function showResult(result) {
-            switchPage(pages.loading, pages.result);
-            
-            const card = result.card;
-            const isReversed = result.isReversed;
-            const hash = result.hash;
-            
-            // 调试信息：在控制台显示卡牌信息
-            console.log('========== 卡牌信息 ==========');
-            console.log('卡牌ID:', card.id);
-            console.log('卡牌名称:', card.name_cn);
-            console.log('Hash值:', hash);
-            console.log('Hash % 2 =', hash % 2);
-            console.log('是否逆位:', isReversed);
-            console.log('图片旋转:', isReversed ? '180deg (逆位 - 图片应倒置)' : '0deg (正位 - 图片应正常)');
-            console.log('============================');
-            
-            // 更新日期和月相
-            const headerDiv = pages.result.querySelector('.flex.justify-between.items-center');
-            if (headerDiv) {
-                const dateElement = headerDiv.querySelector('span.font-mono');
-                const moonElement = headerDiv.querySelector('span.text-lg');
-                if (dateElement) dateElement.textContent = getCurrentDate();
-                if (moonElement) moonElement.textContent = getMoonPhase();
-            }
-            
-            // 更新卡牌图片（延迟加载，只加载当前需要的）
-            const cardContainer = document.querySelector('#card-content');
-            if (cardContainer) {
-                // 显示加载动画
-                cardContainer.innerHTML = '<div class="absolute inset-0 flex items-center justify-center bg-void/50"><div class="w-8 h-8 border-t-2 border-l-2 border-gold rounded-full animate-spin"></div></div>';
-                
-                const img = document.createElement('img');
-                // 构建文件名，使用压缩后的WebP格式
-                const fileName = `${card.id}. ${card.name_cn} (${card.name_en}).webp`;
-                img.alt = card.name_cn;
-                img.className = 'w-full h-full object-cover';
-                
-                // 设置旋转：正位不旋转（完全不设置transform），逆位旋转180度
-                const setRotation = () => {
-                    if (isReversed) {
-                        img.style.transform = 'rotate(180deg)';
-                        img.style.transformOrigin = 'center center';
-                    } else {
-                        // 正位：完全清除transform，确保图片正常显示
-                        img.style.transform = '';
-                        img.style.transformOrigin = '';
-                    }
-                };
-                
-                // 图片加载完成后的处理
-                const loadStartTime = performance.now();
-                img.onload = () => {
-                    const loadTime = performance.now() - loadStartTime;
-                    setRotation();
-                    // 移除加载动画，显示图片
-                    cardContainer.innerHTML = '';
-                    cardContainer.appendChild(img);
-                    console.log(`图片加载完成，耗时: ${loadTime.toFixed(2)}ms，旋转状态:`, isReversed ? '180deg (逆位)' : '无旋转 (正位)');
-                };
-                
-                img.onerror = function() {
-                    // 如果图片加载失败，显示占位符
-                    cardContainer.innerHTML = '';
-                    const placeholder = document.createElement('div');
-                    placeholder.className = 'absolute inset-0 bg-gradient-to-b from-gray-800 to-black flex items-center justify-center';
-                    placeholder.innerHTML = `
-                        <span class="font-serif text-6xl opacity-20 text-white">${card.id}</span>
-                        <p class="absolute bottom-4 text-xs text-white/30 tracking-[0.5em] uppercase">${card.name_en}</p>
-                    `;
-                    cardContainer.appendChild(placeholder);
-                };
-                
-                // 开始加载图片（延迟加载，只加载当前需要的，使用压缩后的WebP格式）
-                img.src = `cards_small/${fileName}`;
-            }
-            
-            // 更新卡牌名称和正逆位标志
-            const nameElement = document.querySelector('#result-text-anim h2');
-            if (nameElement) {
-                const positionText = isReversed ? '逆位' : '正位';
-                const positionClass = isReversed ? 'text-red-400' : 'text-green-400';
-                const positionBg = isReversed ? 'bg-red-500/20' : 'bg-green-500/20';
-                nameElement.innerHTML = `
-                    ${card.name_cn}
-                    <span class="ml-3 text-base ${positionClass} font-normal px-3 py-1 rounded-full ${positionBg} border ${isReversed ? 'border-red-500/50' : 'border-green-500/50'}">
-                        ${positionText}
-                    </span>
-                `;
-            }
-            
-            // 更新关键词
-            const keywords = isReversed ? card.keywords.reversed : card.keywords.upright;
-            const keywordsContainer = document.querySelector('#result-text-anim .flex.gap-3');
-            if (keywordsContainer) {
-                keywordsContainer.innerHTML = '';
-                const selectedKeywords = keywords.slice(0, 2);
-                selectedKeywords.forEach(keyword => {
-                    const span = document.createElement('span');
-                    span.className = 'border border-white/10 px-2 py-1 rounded text-xs text-slate-400 font-light';
-                    span.textContent = `#${keyword}`;
-                    keywordsContainer.appendChild(span);
-                });
-            }
-            
-            // 更新文案
-            const message = isReversed ? card.message.reversed : card.message.upright;
-            const messageElement = document.querySelector('#result-text-anim .relative.py-4 p.text-sm');
-            if (messageElement) messageElement.textContent = message;
-            
-            // 更新行动建议
-            const action = isReversed ? card.action_item.reversed : card.action_item.upright;
-            const actionElement = document.querySelector('#result-text-anim .bg-white\\/5 p.text-sm.text-white');
-            if (actionElement) actionElement.textContent = action;
-            
-            // 更新社交货币挂件
-            const angelNumber = generateAngelNumber(hash);
-            const auraColor = generateAuraColor(hash);
-            
-            const numberElement = document.querySelector('#result-text-anim .font-mono.text-lg');
-            const colorNameElement = document.querySelector('#result-text-anim .text-xs.text-slate-300');
-            const colorDot = document.querySelector('#result-text-anim .w-3.h-3');
-            
-            if (numberElement) numberElement.textContent = angelNumber;
-            if (colorNameElement) colorNameElement.textContent = auraColor.name;
-            if (colorDot) {
-                colorDot.style.backgroundColor = auraColor.code;
-                colorDot.style.boxShadow = `0 0 10px ${auraColor.code}80`;
-            }
-            
-            // 依次浮现元素
-            setTimeout(() => {
-                document.getElementById('result-card-anim').classList.remove('translate-y-4', 'opacity-0');
-            }, 100);
-            
-            setTimeout(() => {
-                document.getElementById('result-text-anim').classList.remove('opacity-0');
-                document.getElementById('result-text-anim').classList.add('animate-float');
-            }, 600);
-
-            setTimeout(() => {
-                document.getElementById('save-btn-anim').classList.remove('opacity-0');
-                document.getElementById('retry-btn-anim').style.display = 'block';
-                setTimeout(() => {
-                    document.getElementById('retry-btn-anim').classList.remove('opacity-0');
-                }, 100);
-            }, 1200);
-        }
-
-        // ========== 保存卡片 ==========
-        async function saveCard() {
-            // 使用html2canvas生成图片
-            try {
-                // 动态加载html2canvas库（优先使用国内访问较快的CDN）
-                if (typeof html2canvas === 'undefined') {
-                    const script = document.createElement('script');
-                    // 优先使用jsdelivr（国内访问较快），失败则尝试unpkg
-                    script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
-                    script.crossOrigin = 'anonymous';
-                    document.head.appendChild(script);
-                    await new Promise((resolve, reject) => {
-                        const timeout = setTimeout(() => {
-                            // 超时后尝试备用CDN
-                            const fallbackScript = document.createElement('script');
-                            fallbackScript.src = 'https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js';
-                            fallbackScript.crossOrigin = 'anonymous';
-                            document.head.appendChild(fallbackScript);
-                            fallbackScript.onload = () => {
-                                clearTimeout(timeout);
-                                resolve();
-                            };
-                            fallbackScript.onerror = () => reject(new Error('无法加载html2canvas库'));
-                        }, 5000); // 5秒超时
-                        
-                        script.onload = () => {
-                            clearTimeout(timeout);
-                            resolve();
-                        };
-                        script.onerror = () => {
-                            clearTimeout(timeout);
-                            // 如果jsdelivr失败，立即尝试unpkg
-                            const fallbackScript = document.createElement('script');
-                            fallbackScript.src = 'https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js';
-                            fallbackScript.crossOrigin = 'anonymous';
-                            document.head.appendChild(fallbackScript);
-                            fallbackScript.onload = () => resolve();
-                            fallbackScript.onerror = () => reject(new Error('无法加载html2canvas库'));
-                        };
-                    });
-                }
-                
-                const resultSection = document.getElementById('page-result');
-                const canvas = await html2canvas(resultSection, {
-                    backgroundColor: '#050511',
-                    scale: 2,
-                    useCORS: true,
-                    logging: false
-                });
-                
-                // 转换为图片并下载
-                const link = document.createElement('a');
-                link.download = `echo-${currentResult.card.id}-${Date.now()}.jpg`;
-                link.href = canvas.toDataURL('image/jpeg', 0.9);
-                link.click();
-            } catch (error) {
-                console.error('生成图片失败:', error);
-                alert('生成图片失败，请稍后重试');
-            }
-        }
-
-        // ========== 重新抽牌 ==========
-        function retryDraw() {
-            // 重置状态
-            selectedTag = null;
-            currentResult = null;
-            
-            // 重置UI
-            document.querySelectorAll('.tag-btn').forEach(btn => {
-                btn.classList.remove('bg-gold', 'text-black', 'border-gold');
-                btn.classList.add('border-gold/30', 'text-gold/70');
-            });
-            
-            document.getElementById('start-btn').style.opacity = '0';
-            document.getElementById('start-btn').style.pointerEvents = 'none';
-            document.getElementById('start-hint').textContent = '请先选择你的问题';
-            
-            // 重置结果页
-            document.getElementById('result-card-anim').classList.add('translate-y-4', 'opacity-0');
-            document.getElementById('result-text-anim').classList.add('opacity-0');
-            document.getElementById('save-btn-anim').classList.add('opacity-0');
-            document.getElementById('retry-btn-anim').classList.add('opacity-0');
-            document.getElementById('retry-btn-anim').style.display = 'none';
-            
-            // 返回入口页
-            switchPage(pages.result, pages.entrance);
-        }
-
-        // ========== 图片预加载（延迟加载，只加载当前需要的）==========
-        function preloadCardImage(cardId, nameCn, nameEn) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                const fileName = `${cardId}. ${nameCn} (${nameEn}).webp`;
-                img.src = `cards_small/${fileName}`;
-                img.onload = () => resolve(img);
-                img.onerror = reject;
-            });
-        }
-
-        // ========== 初始化 ==========
-        document.addEventListener('DOMContentLoaded', async () => {
-            // 显示加载提示
-            console.log('开始加载数据...');
-            const startTime = performance.now();
-            
-            await loadCardsData();
-            
-            const loadTime = performance.now() - startTime;
-            console.log(`数据加载完成，耗时: ${loadTime.toFixed(2)}ms`);
-            
-            initTagSelection();
-            
-            // 绑定开始按钮
-            document.getElementById('start-btn').addEventListener('click', startJourney);
-        });
-    </script>
+    <!-- 外部JavaScript文件 -->
+    <script src="js/utils.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/ritual.js"></script>
+    <script src="js/result.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

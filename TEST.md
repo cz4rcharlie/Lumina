@@ -1,4 +1,4 @@
-# Lumina Echo 测试指南
+# Lumina · 流光 测试指南
 
 ## 测试环境
 
