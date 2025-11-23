@@ -159,8 +159,8 @@ function startRitualLogic(useTouch = false, onComplete) {
         // 添加光效强度变化
         const glowIntensity = 0.3 + Math.sin(shakeCount * 0.5) * 0.2;
         deckCard.style.boxShadow = `
-            0 0 ${30 * glowIntensity}px rgba(212, 175, 55, ${0.3 * glowIntensity}),
-            inset 0 0 ${60 * glowIntensity}px rgba(212, 175, 55, ${0.1 * glowIntensity})
+            0 0 ${30 * glowIntensity}px rgba(232, 160, 200, ${0.3 * glowIntensity}),
+            inset 0 0 ${60 * glowIntensity}px rgba(232, 160, 200, ${0.1 * glowIntensity})
         `;
         
         // 震动反馈（只在特定时机）
@@ -183,7 +183,7 @@ function startRitualLogic(useTouch = false, onComplete) {
             // 最终动画：卡片回到中心并放大
             deckCard.style.transition = 'transform 0.5s ease-out, box-shadow 0.5s ease-out';
             deckCard.style.transform = 'rotate(0deg) translate(0, 0) scale(1.05)';
-            deckCard.style.boxShadow = '0 0 40px rgba(212, 175, 55, 0.5), inset 0 0 80px rgba(212, 175, 55, 0.2)';
+            deckCard.style.boxShadow = '0 0 40px rgba(232, 160, 200, 0.5), inset 0 0 80px rgba(232, 160, 200, 0.2)';
             
             // 延迟后调用完成回调
             setTimeout(() => {

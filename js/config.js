@@ -3,10 +3,10 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                void: '#050511',     // 虚空黑
-                gold: '#D4AF37',     // 复古金
-                lavender: '#E6E6FA', // 薰衣草雾
-                nebula: '#2D1B4E',   // 星云紫
+                void: '#181228',     // 深蓝紫背景（神秘治愈）
+                gold: '#E8A0C8',     // 神秘玫瑰粉（优雅主色）
+                lavender: '#F0E0FF', // 柔和薰衣草雾（神秘辅助）
+                nebula: '#3D2A5C',   // 深星云紫（神秘氛围）
             },
             fontFamily: {
                 serif: ['"Noto Serif SC"', 'serif'],

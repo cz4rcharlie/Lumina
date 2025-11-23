@@ -67,9 +67,9 @@ function initTagSelection() {
                     selectedButton.classList.add('bg-gold', 'text-black', 'border-gold');
 
                     // 使用inline style确保样式优先级
-                    selectedButton.style.backgroundColor = '#D4AF37';
-                    selectedButton.style.color = '#000000';
-                    selectedButton.style.borderColor = '#D4AF37';
+                    selectedButton.style.backgroundColor = '#E8A0C8';
+                    selectedButton.style.color = '#181228';
+                    selectedButton.style.borderColor = '#E8A0C8';
                     selectedButton.style.opacity = '1';
                 }
             }
