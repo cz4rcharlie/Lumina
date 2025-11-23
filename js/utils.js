@@ -20,9 +20,9 @@ function generateAngelNumber(hash) {
 function generateAuraColor(hash) {
     const colors = [
         { name: '星尘白', code: '#FFFFFF' },
-        { name: '神秘玫瑰粉', code: '#E8A0C8' },
-        { name: '薰衣草紫', code: '#F0E0FF' },
-        { name: '深星云紫', code: '#3D2A5C' },
+        { name: '柔和玫瑰粉', code: '#E5A0C0' },
+        { name: '温暖薰衣草', code: '#F2E1FF' },
+        { name: '柔和星云紫', code: '#3A2859' },
         { name: '玫瑰金', code: '#E8B4B8' },
         { name: '月光银', code: '#C0C0C0' },
         { name: '翡翠绿', code: '#50C878' },

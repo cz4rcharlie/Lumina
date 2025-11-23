@@ -12,16 +12,31 @@
     
     <!-- 使用Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 使用系统字体，避免加载外部字体 -->
+    <!-- 优化系统字体配置，增强可读性和美观性 -->
     <style>
         @font-face {
             font-family: 'Noto Serif SC';
-            src: local('PingFang SC'), local('Microsoft YaHei'), local('SimSun');
+            src: local('PingFang SC'), local('Source Han Serif SC'), local('Microsoft YaHei'), local('SimSun');
         }
         @font-face {
             font-family: 'Inter';
-            src: local('PingFang SC'), local('Microsoft YaHei'), local('Arial');
+            src: local('SF Pro Text'), local('PingFang SC'), local('Source Han Sans SC'), local('Microsoft YaHei'), local('Arial');
         }
+
+        /* 全局字体优化 */
+        body {
+            font-family: 'Inter', 'PingFang SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+        }
+
+        .font-serif {
+            font-family: 'Noto Serif SC', 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', serif;
+        }
+
+        /* 提升文字可读性 */
+        .text-slate-200 { color: #e2e8f0 !important; } /* 更亮的文字 */
+        .text-slate-400 { color: #94a3b8 !important; } /* 提高对比度 */
+        .text-slate-500 { color: #64748b !important; } /* 提高对比度 */
     </style>
     
     <!-- 外部CSS文件 -->
@@ -45,7 +60,7 @@
             <div class="absolute inset-0 pointer-events-none overflow-hidden">
                 <!-- 背景大卡片 - 模糊且放大 -->
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vh] opacity-20" style="perspective: 2000px;">
-                    <div class="absolute inset-0 rounded-3xl bg-black border-4 border-gold/20 transform rotate-12 scale-110 blur-[60px]" style="box-shadow: 0 0 200px rgba(232, 160, 200, 0.3), inset 0 0 300px rgba(232, 160, 200, 0.1); perspective: inherit;">
+                    <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#241e2d] via-[#352b3d] to-[#181228] border-4 border-gold/20 transform rotate-12 scale-110 blur-[60px]" style="box-shadow: 0 0 200px rgba(229, 160, 192, 0.3), inset 0 0 300px rgba(229, 160, 192, 0.1); perspective: inherit;">
                         <div class="absolute inset-0 opacity-15" style="background-image: 
                             radial-gradient(circle at 35% 35%, rgba(255,255,255,0.4) 0.5px, transparent 0.5px),
                             radial-gradient(circle at 65% 65%, rgba(255,255,255,0.35) 0.5px, transparent 0.5px),
@@ -67,30 +82,30 @@
                             background-repeat: repeat;
                             animation: starry-flow-deep 60s linear infinite, twinkle-slow 8s ease-in-out infinite;"></div>
                         <!-- Mid layer: medium stars with subtle color, medium flow -->
-                        <div class="absolute inset-0 opacity-30" style="background-image:
+                        <div class="absolute inset-0 opacity-25" style="background-image:
                             radial-gradient(circle at 40% 40%, rgba(255,255,255,0.7) 1px, transparent 1px),
-                            radial-gradient(circle at 60% 60%, rgba(176,196,222,0.4) 0.8px, transparent 0.8px),
+                            radial-gradient(circle at 60% 60%, rgba(176,196,222,0.3) 0.8px, transparent 0.8px),
                             radial-gradient(circle at 25% 75%, rgba(255,255,255,0.65) 1px, transparent 1px),
-                            radial-gradient(circle at 75% 25%, rgba(186,85,211,0.3) 0.9px, transparent 0.9px),
+                            radial-gradient(circle at 75% 25%, rgba(186,85,211,0.2) 0.9px, transparent 0.9px),
                             radial-gradient(circle at 50% 50%, rgba(255,255,255,0.6) 1px, transparent 1px),
-                            radial-gradient(circle at 15% 35%, rgba(138,43,226,0.35) 0.8px, transparent 0.8px),
+                            radial-gradient(circle at 15% 35%, rgba(138,43,226,0.25) 0.8px, transparent 0.8px),
                             radial-gradient(circle at 85% 65%, rgba(255,255,255,0.68) 1px, transparent 1px),
                             radial-gradient(circle at 35% 85%, rgba(147,112,219,0.4) 0.9px, transparent 0.9px);
                             background-size: 150px 150px, 140px 140px, 160px 160px, 130px 130px, 170px 170px, 155px 155px, 145px 145px, 165px 165px;
                             background-repeat: repeat;
                             animation: starry-flow-mid 45s linear infinite, twinkle-natural 5s ease-in-out infinite;"></div>
                         <!-- Bright layer: few large stars with faint halo, slow reverse flow -->
-                        <div class="absolute inset-0 opacity-45" style="background-image:
+                        <div class="absolute inset-0 opacity-35" style="background-image:
                             radial-gradient(circle at 35% 35%, rgba(255,255,255,0.9) 2px, rgba(255,255,255,0.2) 3px, transparent 4px),
-                            radial-gradient(circle at 65% 65%, rgba(176,196,222,0.8) 2px, rgba(176,196,222,0.15) 3px, transparent 4px),
-                            radial-gradient(circle at 50% 50%, rgba(138,43,226,0.5) 1.5px, rgba(138,43,226,0.1) 2.5px, transparent 3px),
+                            radial-gradient(circle at 65% 65%, rgba(176,196,222,0.6) 2px, rgba(176,196,222,0.12) 3px, transparent 4px),
+                            radial-gradient(circle at 50% 50%, rgba(138,43,226,0.35) 1.5px, rgba(138,43,226,0.08) 2.5px, transparent 3px),
                             radial-gradient(circle at 20% 20%, rgba(255,255,255,0.88) 2px, rgba(255,255,255,0.18) 3px, transparent 4px),
-                            radial-gradient(circle at 80% 80%, rgba(147,112,219,0.75) 2px, rgba(147,112,219,0.12) 3px, transparent 4px);
+                            radial-gradient(circle at 80% 80%, rgba(147,112,219,0.55) 2px, rgba(147,112,219,0.1) 3px, transparent 4px);
                             background-size: 250px 250px, 230px 230px, 270px 270px, 240px 240px, 260px 260px;
                             background-repeat: repeat;
                             animation: starry-flow-bright 70s linear infinite, twinkle-natural 4s ease-in-out infinite;"></div>
                         <!-- 优化背景多彩星层 - 神秘氛围 -->
-                        <div class="absolute inset-0 opacity-25 starry-layer" style="background-image:
+                        <div class="absolute inset-0 opacity-20 starry-layer" style="background-image:
                             radial-gradient(circle at 25% 25%, rgba(255,255,255,0.6) 1px, transparent 1px),
                             radial-gradient(circle at 75% 75%, rgba(138,43,226,0.35) 0.8px, transparent 0.8px),
                             radial-gradient(circle at 50% 10%, rgba(147,112,219,0.4) 0.9px, transparent 0.9px),
@@ -109,10 +124,10 @@
                 <div class="absolute bottom-1/4 left-1/4 w-[60vw] h-[60vw] bg-purple-900/25 rounded-full blur-[100px] animate-glow-pulse" style="animation-delay: 2s;"></div>
                 
                 <!-- 神秘粒子效果 -->
-                <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-gold/40 rounded-full blur-sm animate-particle-float" style="animation-delay: 0s; box-shadow: 0 0 20px #E8A0C8;"></div>
-                <div class="absolute top-2/3 right-1/4 w-2 h-2 bg-gold/50 rounded-full blur-sm animate-particle-float" style="animation-delay: 1.5s; box-shadow: 0 0 15px #E8A0C8;"></div>
-                <div class="absolute bottom-1/3 left-1/5 w-2.5 h-2.5 bg-gold/30 rounded-full blur-sm animate-particle-float" style="animation-delay: 3s; box-shadow: 0 0 18px #E8A0C8;"></div>
-                <div class="absolute top-1/2 right-1/3 w-2 h-2 bg-nebula/40 rounded-full blur-sm animate-particle-float" style="animation-delay: 4.5s; box-shadow: 0 0 15px #3D2A5C;"></div>
+                <div class="absolute top-1/4 left-1/3 w-3 h-3 bg-gold/40 rounded-full blur-sm animate-particle-float" style="animation-delay: 0s; box-shadow: 0 0 20px #E5A0C0;"></div>
+                <div class="absolute top-2/3 right-1/4 w-2 h-2 bg-gold/50 rounded-full blur-sm animate-particle-float" style="animation-delay: 1.5s; box-shadow: 0 0 15px #E5A0C0;"></div>
+                <div class="absolute bottom-1/3 left-1/5 w-2.5 h-2.5 bg-gold/30 rounded-full blur-sm animate-particle-float" style="animation-delay: 3s; box-shadow: 0 0 18px #E5A0C0;"></div>
+                <div class="absolute top-1/2 right-1/3 w-2 h-2 bg-nebula/40 rounded-full blur-sm animate-particle-float" style="animation-delay: 4.5s; box-shadow: 0 0 15px #3A2859;"></div>
             </div>
 
             <!-- 中心悬浮卡牌背面（全息质感）- 更大尺寸增强冲击感 -->
@@ -122,7 +137,7 @@
                     <div class="absolute inset-0 -m-8 rounded-2xl bg-gold/20 blur-[40px] animate-breathe opacity-50"></div>
                     
                     <!-- 卡牌背面多层效果 -->
-                    <div class="absolute inset-0 rounded-2xl bg-black border-2 border-gold/50 shadow-2xl overflow-hidden flex flex-col" style="box-shadow: 0 0 80px rgba(232, 160, 200, 0.5), inset 0 0 120px rgba(232, 160, 200, 0.2);">
+                    <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#241e2d] via-[#352b3d] to-[#181228] border-2 border-gold/50 shadow-2xl overflow-hidden flex flex-col" style="box-shadow: 0 0 80px rgba(229, 160, 192, 0.5), inset 0 0 120px rgba(229, 160, 192, 0.2);">
                         <!-- 优化基础星空层 - 使用更少的渐变，性能更好 -->
                         <div class="absolute inset-0 opacity-25 starry-layer" style="background-image:
                             radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
@@ -162,10 +177,10 @@
                             will-change: transform;"></div>
                         
                         <!-- 闪烁光效层 -->
-                        <div class="absolute inset-0 opacity-30" style="background: linear-gradient(135deg, transparent 0%, rgba(232, 160, 200, 0.1) 25%, transparent 50%, rgba(232, 160, 200, 0.1) 75%, transparent 100%); background-size: 300% 300%; animation: shimmer 6s linear infinite;"></div>
+                        <div class="absolute inset-0 opacity-30" style="background: linear-gradient(135deg, transparent 0%, rgba(229, 160, 192, 0.1) 25%, transparent 50%, rgba(229, 160, 192, 0.1) 75%, transparent 100%); background-size: 300% 300%; animation: shimmer 6s linear infinite;"></div>
                         
                         <!-- 优化静态多彩星层 - 神秘星辰分布 -->
-                        <div class="absolute inset-0 opacity-40 starry-layer" style="background-image:
+                        <div class="absolute inset-0 opacity-30 starry-layer" style="background-image:
                             radial-gradient(circle at 10% 15%, rgba(255,255,255,0.8) 1px, transparent 1px),
                             radial-gradient(circle at 25% 35%, rgba(138,43,226,0.5) 0.8px, transparent 0.8px),
                             radial-gradient(circle at 40% 20%, rgba(147,112,219,0.6) 0.9px, transparent 0.9px),
@@ -182,13 +197,13 @@
                         <div class="flex-1 flex flex-col items-center justify-center relative z-30 pointer-events-none pt-6 pb-2">
                             <!-- LUMINA Logo - 适配卡牌大小 -->
                             <div class="mb-3">
-                                <h1 class="font-serif text-3xl md:text-4xl text-gold tracking-[0.3em] animate-pulse mb-2" style="text-shadow: 0 0 30px rgba(232, 160, 200, 1), 0 0 60px rgba(232, 160, 200, 0.6), 0 0 90px rgba(232, 160, 200, 0.3);">LUMINA</h1>
-                                <div class="w-24 h-0.5 bg-gold/60 mx-auto animate-pulse" style="box-shadow: 0 0 10px rgba(232, 160, 200, 0.8);"></div>
+                                <h1 class="font-serif text-3xl md:text-4xl text-gold tracking-[0.3em] animate-pulse mb-2" style="text-shadow: 0 0 30px rgba(229, 160, 192, 1), 0 0 60px rgba(229, 160, 192, 0.6), 0 0 90px rgba(229, 160, 192, 0.3);">LUMINA</h1>
+                                <div class="w-24 h-0.5 bg-gold/60 mx-auto animate-pulse" style="box-shadow: 0 0 10px rgba(229, 160, 192, 0.8);"></div>
                         </div>
                         
                             <!-- 中心几何图案 - 更大更复杂 -->
                             <div class="mt-1">
-                                <div class="w-32 h-32 md:w-36 md:h-36 border-2 border-gold/40 rounded-full flex items-center justify-center animate-spin-slow" style="box-shadow: 0 0 30px rgba(232, 160, 200, 0.4);">
+                                <div class="w-32 h-32 md:w-36 md:h-36 border-2 border-gold/40 rounded-full flex items-center justify-center animate-spin-slow" style="box-shadow: 0 0 30px rgba(229, 160, 192, 0.4);">
                                     <div class="w-24 h-24 md:w-28 md:h-28 border-2 border-gold/30 transform rotate-45 rounded-xl"></div>
                                     <div class="absolute w-20 h-20 md:w-24 md:h-24 border border-gold/20 rounded-full"></div>
                                     <div class="absolute w-12 h-12 md:w-14 md:h-14 border border-gold/15 rounded-lg transform rotate-12"></div>
@@ -205,46 +220,46 @@
             </div>
 
                         <!-- 增强光效装饰 - 固定位置大星星（随机分布） -->
-                        <div class="absolute top-[7%] left-[23%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 0s; box-shadow: 0 0 20px #E8A0C8, 0 0 40px #E8A0C8;"></div>
-                        <div class="absolute top-[33%] right-[19%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.5s; box-shadow: 0 0 18px #E8A0C8, 0 0 35px #E8A0C8;"></div>
-                        <div class="absolute bottom-[27%] left-[31%] w-2 h-2 bg-gold/50 rounded-full animate-pulse" style="animation-delay: 1s; box-shadow: 0 0 15px #E8A0C8, 0 0 30px #E8A0C8;"></div>
-                        <div class="absolute top-[52%] right-[34%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 1.5s; box-shadow: 0 0 16px #E8A0C8, 0 0 32px #E8A0C8;"></div>
-                        <div class="absolute top-[16%] left-[59%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 0.25s; box-shadow: 0 0 20px #E8A0C8, 0 0 40px #E8A0C8;"></div>
-                        <div class="absolute bottom-[21%] right-[14%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.75s; box-shadow: 0 0 18px #E8A0C8, 0 0 35px #E8A0C8;"></div>
-                        <div class="absolute top-[71%] left-[11%] w-2.5 h-2.5 bg-gold/65 rounded-full animate-pulse" style="animation-delay: 1.25s; box-shadow: 0 0 18px #E8A0C8, 0 0 35px #E8A0C8;"></div>
-                        <div class="absolute bottom-[16%] right-[54%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 1.75s; box-shadow: 0 0 20px #E8A0C8, 0 0 40px #E8A0C8;"></div>
-                        <div class="absolute top-[9%] right-[8%] w-2 h-2 bg-gold/55 rounded-full animate-pulse" style="animation-delay: 0.4s; box-shadow: 0 0 15px #E8A0C8, 0 0 30px #E8A0C8;"></div>
-                        <div class="absolute bottom-[11%] left-[74%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.9s; box-shadow: 0 0 18px #E8A0C8, 0 0 35px #E8A0C8;"></div>
-                        <div class="absolute top-[78%] left-[47%] w-2.5 h-2.5 bg-gold/75 rounded-full animate-pulse" style="animation-delay: 0.3s; box-shadow: 0 0 18px #E8A0C8, 0 0 35px #E8A0C8;"></div>
-                        <div class="absolute top-[6%] left-[41%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.6s; box-shadow: 0 0 15px #E8A0C8, 0 0 30px #E8A0C8;"></div>
-                        <div class="absolute bottom-[8%] right-[37%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 1.1s; box-shadow: 0 0 18px #E8A0C8, 0 0 35px #E8A0C8;"></div>
-                        <div class="absolute top-[44%] left-[9%] w-2 h-2 bg-gold/55 rounded-full animate-pulse" style="animation-delay: 0.8s; box-shadow: 0 0 15px #E8A0C8, 0 0 30px #E8A0C8;"></div>
-                        <div class="absolute bottom-[48%] right-[11%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 1.3s; box-shadow: 0 0 20px #E8A0C8, 0 0 40px #E8A0C8;"></div>
-                        <div class="absolute top-[63%] left-[82%] w-2 h-2 bg-gold/65 rounded-full animate-pulse" style="animation-delay: 0.55s; box-shadow: 0 0 15px #E8A0C8, 0 0 30px #E8A0C8;"></div>
-                        <div class="absolute bottom-[42%] right-[79%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 1.05s; box-shadow: 0 0 18px #E8A0C8, 0 0 35px #E8A0C8;"></div>
-                        <div class="absolute top-[86%] left-[28%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.35s; box-shadow: 0 0 15px #E8A0C8, 0 0 30px #E8A0C8;"></div>
+                        <div class="absolute top-[7%] left-[23%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 0s; box-shadow: 0 0 20px #E5A0C0, 0 0 40px #E5A0C0;"></div>
+                        <div class="absolute top-[33%] right-[19%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.5s; box-shadow: 0 0 18px #E5A0C0, 0 0 35px #E5A0C0;"></div>
+                        <div class="absolute bottom-[27%] left-[31%] w-2 h-2 bg-gold/50 rounded-full animate-pulse" style="animation-delay: 1s; box-shadow: 0 0 15px #E5A0C0, 0 0 30px #E5A0C0;"></div>
+                        <div class="absolute top-[52%] right-[34%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 1.5s; box-shadow: 0 0 16px #E5A0C0, 0 0 32px #E5A0C0;"></div>
+                        <div class="absolute top-[16%] left-[59%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 0.25s; box-shadow: 0 0 20px #E5A0C0, 0 0 40px #E5A0C0;"></div>
+                        <div class="absolute bottom-[21%] right-[14%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.75s; box-shadow: 0 0 18px #E5A0C0, 0 0 35px #E5A0C0;"></div>
+                        <div class="absolute top-[71%] left-[11%] w-2.5 h-2.5 bg-gold/65 rounded-full animate-pulse" style="animation-delay: 1.25s; box-shadow: 0 0 18px #E5A0C0, 0 0 35px #E5A0C0;"></div>
+                        <div class="absolute bottom-[16%] right-[54%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 1.75s; box-shadow: 0 0 20px #E5A0C0, 0 0 40px #E5A0C0;"></div>
+                        <div class="absolute top-[9%] right-[8%] w-2 h-2 bg-gold/55 rounded-full animate-pulse" style="animation-delay: 0.4s; box-shadow: 0 0 15px #E5A0C0, 0 0 30px #E5A0C0;"></div>
+                        <div class="absolute bottom-[11%] left-[74%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 0.9s; box-shadow: 0 0 18px #E5A0C0, 0 0 35px #E5A0C0;"></div>
+                        <div class="absolute top-[78%] left-[47%] w-2.5 h-2.5 bg-gold/75 rounded-full animate-pulse" style="animation-delay: 0.3s; box-shadow: 0 0 18px #E5A0C0, 0 0 35px #E5A0C0;"></div>
+                        <div class="absolute top-[6%] left-[41%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.6s; box-shadow: 0 0 15px #E5A0C0, 0 0 30px #E5A0C0;"></div>
+                        <div class="absolute bottom-[8%] right-[37%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 1.1s; box-shadow: 0 0 18px #E5A0C0, 0 0 35px #E5A0C0;"></div>
+                        <div class="absolute top-[44%] left-[9%] w-2 h-2 bg-gold/55 rounded-full animate-pulse" style="animation-delay: 0.8s; box-shadow: 0 0 15px #E5A0C0, 0 0 30px #E5A0C0;"></div>
+                        <div class="absolute bottom-[48%] right-[11%] w-3 h-3 bg-gold rounded-full animate-pulse" style="animation-delay: 1.3s; box-shadow: 0 0 20px #E5A0C0, 0 0 40px #E5A0C0;"></div>
+                        <div class="absolute top-[63%] left-[82%] w-2 h-2 bg-gold/65 rounded-full animate-pulse" style="animation-delay: 0.55s; box-shadow: 0 0 15px #E5A0C0, 0 0 30px #E5A0C0;"></div>
+                        <div class="absolute bottom-[42%] right-[79%] w-2.5 h-2.5 bg-gold/70 rounded-full animate-pulse" style="animation-delay: 1.05s; box-shadow: 0 0 18px #E5A0C0, 0 0 35px #E5A0C0;"></div>
+                        <div class="absolute top-[86%] left-[28%] w-2 h-2 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.35s; box-shadow: 0 0 15px #E5A0C0, 0 0 30px #E5A0C0;"></div>
             </div>
             
                     <!-- 全息反光效果 - 增强 -->
-                    <div class="absolute inset-0 rounded-2xl pointer-events-none" style="background: linear-gradient(135deg, rgba(232, 160, 200, 0.15) 0%, transparent 40%, rgba(232, 160, 200, 0.1) 60%, transparent 100%); mix-blend-mode: overlay;"></div>
+                    <div class="absolute inset-0 rounded-2xl pointer-events-none" style="background: linear-gradient(135deg, rgba(229, 160, 192, 0.15) 0%, transparent 40%, rgba(229, 160, 192, 0.1) 60%, transparent 100%); mix-blend-mode: overlay;"></div>
                 </div>
             </div>
             
             <!-- 标签选择 - 优化样式和间距，上移 -->
             <div class="relative z-20 flex flex-wrap justify-center gap-2.5 px-6 mb-5" id="tag-container">
-                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="love_crush" style="animation-delay: 0s; box-shadow: 0 0 15px rgba(232, 160, 200, 0.1);">暧昧/暗恋</button>
-                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="love_partner" style="animation-delay: 0.2s; box-shadow: 0 0 15px rgba(232, 160, 200, 0.1);">伴侣/复合</button>
-                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="career_change" style="animation-delay: 0.4s; box-shadow: 0 0 15px rgba(232, 160, 200, 0.1);">跳槽/迷茫</button>
-                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="wealth" style="animation-delay: 0.6s; box-shadow: 0 0 15px rgba(232, 160, 200, 0.1);">搞钱/财运</button>
-                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20" data-tag="self_growth" style="animation-delay: 0.8s; box-shadow: 0 0 15px rgba(232, 160, 200, 0.1);">近期指引</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20 ripple-effect" data-tag="love_crush" style="animation-delay: 0s; box-shadow: 0 0 15px rgba(229, 160, 192, 0.1);" onclick="createRipple(event, this)">暧昧/暗恋</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20 ripple-effect" data-tag="love_partner" style="animation-delay: 0.2s; box-shadow: 0 0 15px rgba(229, 160, 192, 0.1);" onclick="createRipple(event, this)">伴侣/复合</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20 ripple-effect" data-tag="career_change" style="animation-delay: 0.4s; box-shadow: 0 0 15px rgba(229, 160, 192, 0.1);" onclick="createRipple(event, this)">跳槽/迷茫</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20 ripple-effect" data-tag="wealth" style="animation-delay: 0.6s; box-shadow: 0 0 15px rgba(229, 160, 192, 0.1);" onclick="createRipple(event, this)">搞钱/财运</button>
+                <button class="tag-btn px-4 py-2 border border-gold/40 text-gold/80 text-xs md:text-sm rounded-full hover:bg-gold/15 hover:border-gold hover:text-gold transition-all backdrop-blur-sm bg-void/30 animate-float hover:scale-105 hover:shadow-lg hover:shadow-gold/20 ripple-effect" data-tag="self_growth" style="animation-delay: 0.8s; box-shadow: 0 0 15px rgba(229, 160, 192, 0.1);" onclick="createRipple(event, this)">近期指引</button>
             </div>
             
             <!-- 开始按钮 - 更大更醒目，上移 -->
             <div class="relative z-20 group cursor-pointer -mt-1" id="start-btn" style="opacity: 0; pointer-events: none;">
                 <div class="absolute inset-0 bg-gold rounded-full blur-[40px] opacity-40 group-hover:opacity-60 transition duration-700 animate-breathe"></div>
-                <div class="w-32 h-32 md:w-36 md:h-36 rounded-full border-2 border-gold/60 flex items-center justify-center relative bg-void/70 backdrop-blur-md group-hover:border-gold transition-all" style="box-shadow: 0 0 40px rgba(232, 160, 200, 0.5), inset 0 0 50px rgba(232, 160, 200, 0.15);">
+                <div class="w-32 h-32 md:w-36 md:h-36 rounded-full border-2 border-gold/60 flex items-center justify-center relative bg-void/70 backdrop-blur-md group-hover:border-gold transition-all" style="box-shadow: 0 0 40px rgba(229, 160, 192, 0.5), inset 0 0 50px rgba(229, 160, 192, 0.15);">
                     <div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-tr from-gold/40 via-nebula/30 to-transparent opacity-90 animate-spin-slow"></div>
-                    <svg class="w-12 h-12 md:w-14 md:h-14 text-gold absolute animate-pulse group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 12px rgba(232, 160, 200, 1));">
+                    <svg class="w-12 h-12 md:w-14 md:h-14 text-gold absolute animate-pulse group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 12px rgba(229, 160, 192, 1));">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
                 </div>
@@ -268,25 +283,25 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-slate-900/50 to-slate-800/50 rounded-xl border border-gold/15 shadow-lg transform rotate-[6deg] translate-x-[6px] translate-y-[-4px]"></div>
                     
                     <!-- 主卡片（动态） -->
-                    <div class="absolute inset-0 bg-black rounded-xl border-2 border-gold/40 shadow-2xl flex items-center justify-center overflow-hidden transition-transform duration-300 ease-out" id="deck-card" style="box-shadow: 0 0 30px rgba(232, 160, 200, 0.3), inset 0 0 60px rgba(232, 160, 200, 0.1);">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#241e2d] via-[#352b3d] to-[#181228] rounded-xl border-2 border-gold/40 shadow-2xl flex items-center justify-center overflow-hidden transition-transform duration-300 ease-out" id="deck-card" style="box-shadow: 0 0 30px rgba(229, 160, 192, 0.3), inset 0 0 60px rgba(229, 160, 192, 0.1);">
                         <!-- 神秘图案背景 -->
                         <div class="absolute inset-0 opacity-20" style="background-image: 
-                            radial-gradient(circle at 30% 30%, #E8A0C8 2px, transparent 2px),
-                            radial-gradient(circle at 70% 70%, #E8A0C8 1px, transparent 1px);
+                            radial-gradient(circle at 30% 30%, #E5A0C0 2px, transparent 2px),
+                            radial-gradient(circle at 70% 70%, #E5A0C0 1px, transparent 1px);
                             background-size: 40px 40px, 20px 20px;"></div>
                         
                         <!-- 中心能量球 -->
                         <div class="relative z-10">
-                            <div class="w-16 h-16 rounded-full border-2 border-gold/30 flex items-center justify-center animate-pulse" style="box-shadow: 0 0 20px rgba(232, 160, 200, 0.5);">
+                            <div class="w-16 h-16 rounded-full border-2 border-gold/30 flex items-center justify-center animate-pulse" style="box-shadow: 0 0 20px rgba(229, 160, 192, 0.5);">
                                 <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold/20 to-transparent animate-spin-slow"></div>
                             </div>
                         </div>
                         
                         <!-- 光效装饰 -->
                         <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-                            <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-gold rounded-full animate-pulse" style="animation-delay: 0s; box-shadow: 0 0 10px #E8A0C8;"></div>
-                            <div class="absolute top-3/4 right-1/4 w-1.5 h-1.5 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.5s; box-shadow: 0 0 8px #E8A0C8;"></div>
-                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-gold/40 rounded-full animate-pulse" style="animation-delay: 1s; box-shadow: 0 0 6px #E8A0C8;"></div>
+                            <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-gold rounded-full animate-pulse" style="animation-delay: 0s; box-shadow: 0 0 10px #E5A0C0;"></div>
+                            <div class="absolute top-3/4 right-1/4 w-1.5 h-1.5 bg-gold/60 rounded-full animate-pulse" style="animation-delay: 0.5s; box-shadow: 0 0 8px #E5A0C0;"></div>
+                            <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-gold/40 rounded-full animate-pulse" style="animation-delay: 1s; box-shadow: 0 0 6px #E5A0C0;"></div>
                         </div>
                     </div>
                 </div>
@@ -296,7 +311,7 @@
             <div class="text-center mt-8 flex-shrink-0 w-full px-4">
                 <p class="text-gold/80 text-sm mb-6 animate-pulse" id="action-text">请摇晃手机</p>
                 <div class="w-full max-w-xs mx-auto h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div id="progress-bar" class="h-full bg-gradient-to-r from-gold/60 via-gold to-gold/60 w-0 transition-all duration-[3000ms] ease-out" style="box-shadow: 0 0 10px rgba(232, 160, 200, 0.6);"></div>
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-gold/60 via-gold to-gold/60 w-0 transition-all duration-[3000ms] ease-out" style="box-shadow: 0 0 10px rgba(229, 160, 192, 0.6);"></div>
                 </div>
             </div>
         </section>
@@ -327,9 +342,9 @@
             <div class="flex justify-center mb-5 transform transition-all duration-1000 translate-y-4 opacity-0" id="result-card-anim">
                 <div class="relative" style="width: 220px; height: 352px;">
                     <!-- 外发光边框 -->
-                    <div class="absolute inset-0 rounded-xl" style="box-shadow: 0 0 20px rgba(232, 160, 200, 0.4), inset 0 0 20px rgba(232, 160, 200, 0.1);"></div>
+                    <div class="absolute inset-0 rounded-xl" style="box-shadow: 0 0 20px rgba(229, 160, 192, 0.4), inset 0 0 20px rgba(229, 160, 192, 0.1);"></div>
                     <!-- 主边框 -->
-                    <div class="absolute inset-0 rounded-xl border-2 border-gold/60" style="background: linear-gradient(135deg, rgba(232, 160, 200, 0.1) 0%, rgba(232, 160, 200, 0.05) 100%);"></div>
+                    <div class="absolute inset-0 rounded-xl border-2 border-gold/60" style="background: linear-gradient(135deg, rgba(229, 160, 192, 0.1) 0%, rgba(229, 160, 192, 0.05) 100%);"></div>
                     <!-- 内边框装饰 -->
                     <div class="absolute inset-[2px] rounded-lg border border-gold/30"></div>
                     <!-- 卡片内容 -->
@@ -382,7 +397,7 @@
                 </div>
             </div>
 
-            <button class="mt-4 w-full py-3 border-2 border-gold text-gold text-sm tracking-[0.2em] uppercase hover:bg-gold hover:text-void transition-colors duration-300 opacity-0" id="save-btn-anim" onclick="saveCard()" style="box-shadow: 0 0 15px rgba(232, 160, 200, 0.3);">
+            <button class="mt-4 w-full py-3 border-2 border-gold text-gold text-sm tracking-[0.2em] uppercase hover:bg-gold hover:text-void transition-colors duration-300 opacity-0" id="save-btn-anim" onclick="saveCard()" style="box-shadow: 0 0 15px rgba(229, 160, 192, 0.3);">
                 领取护身符
             </button>
             

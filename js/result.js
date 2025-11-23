@@ -241,7 +241,7 @@ async function saveCard() {
         
         // 使用 onclone 回调确保在克隆的 DOM 中元素完全展开且样式正确
         const canvas = await html2canvas(resultSection, {
-            backgroundColor: '#181228',
+            backgroundColor: '#161025',
             scale: 2,
             useCORS: true,
             logging: false,

@@ -3,14 +3,14 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                void: '#181228',     // 深蓝紫背景（神秘治愈）
-                gold: '#E8A0C8',     // 神秘玫瑰粉（优雅主色）
-                lavender: '#F0E0FF', // 柔和薰衣草雾（神秘辅助）
-                nebula: '#3D2A5C',   // 深星云紫（神秘氛围）
+                void: '#161025',     // 深蓝紫背景（更深邃神秘）
+                gold: '#E5A0C0',     // 柔和玫瑰粉（更温暖治愈）
+                lavender: '#F2E1FF', // 温暖薰衣草雾（增强治愈感）
+                nebula: '#3A2859',   // 柔和星云紫（平衡神秘）
             },
             fontFamily: {
-                serif: ['"Noto Serif SC"', 'serif'],
-                sans: ['"Inter"', 'sans-serif'],
+                serif: ['Noto Serif SC', 'PingFang SC', 'Source Han Serif SC', 'Microsoft YaHei', 'serif'],
+                sans: ['Inter', 'SF Pro Text', 'PingFang SC', 'Source Han Sans SC', 'Microsoft YaHei', 'sans-serif'],
             },
             animation: {
                 'breathe': 'breathe 4s ease-in-out infinite',
@@ -19,6 +19,9 @@ tailwind.config = {
                 'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
                 'shimmer': 'shimmer 2s ease-in-out infinite',
                 'particle-float': 'particle-float 8s ease-in-out infinite',
+                'gentle-pulse': 'gentle-pulse 3s ease-in-out infinite',
+                'soft-glow': 'soft-glow 4s ease-in-out infinite',
+                'ripple': 'ripple 0.6s ease-out',
             },
             keyframes: {
                 breathe: {
@@ -42,6 +45,18 @@ tailwind.config = {
                     '25%': { transform: 'translateY(-20px) translateX(10px) scale(1.2)', opacity: '0.6' },
                     '50%': { transform: 'translateY(-10px) translateX(-15px) scale(0.8)', opacity: '0.4' },
                     '75%': { transform: 'translateY(-30px) translateX(5px) scale(1.1)', opacity: '0.5' },
+                },
+                'gentle-pulse': {
+                    '0%, 100%': { transform: 'scale(1)', opacity: '0.8' },
+                    '50%': { transform: 'scale(1.05)', opacity: '1' },
+                },
+                'soft-glow': {
+                    '0%, 100%': { boxShadow: '0 0 20px rgba(229, 160, 192, 0.3)' },
+                    '50%': { boxShadow: '0 0 30px rgba(229, 160, 192, 0.5)' },
+                },
+                'ripple': {
+                    '0%': { transform: 'scale(0)', opacity: '1' },
+                    '100%': { transform: 'scale(4)', opacity: '0' },
                 }
             }
         }
