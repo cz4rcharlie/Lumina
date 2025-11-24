@@ -34,6 +34,11 @@ function initTagSelection() {
             btn.classList.remove('border-gold/30', 'text-gold/70');
 
             selectedTag = btn.dataset.tag;
+            
+            // 播放点击音效
+            if (typeof audioManager !== 'undefined') {
+                audioManager.playClickSound();
+            }
 
             // 显示开始按钮
             if (startBtn) {
@@ -246,6 +251,9 @@ function resetEntrancePage() {
     
     // 重新初始化3D效果（确保状态一致）
     initCard3DEffect();
+
+    // 重新启动流星雨
+    initMeteorShower();
 }
 
 // ========== 性能监控（可选） ==========
@@ -318,3 +326,95 @@ function createRipple(event, element) {
     }, 600);
 }
 
+// ========== 流星雨效果 ==========
+let meteorShowerTimer = null;
+
+function initMeteorShower() {
+    // 如果已经在运行，先停止，确保单例
+    stopMeteorShower();
+    
+    const container = document.getElementById('meteor-container');
+    if (!container) {
+        console.error('❌ meteor-container not found in DOM');
+        return;
+    }
+
+    console.log('🌠 启动流星雨效果', container);
+
+    function scheduleNext() {
+        // 1~5秒随机间隔
+        const delay = Math.random() * 4000 + 1000;
+        meteorShowerTimer = setTimeout(() => {
+            createMeteor();
+            scheduleNext();
+        }, delay);
+    }
+
+    // 延迟一点点确保DOM完全加载
+    setTimeout(() => {
+        createMeteor(); // 立即生成一个
+        scheduleNext();
+    }, 100);
+}
+
+function stopMeteorShower() {
+    if (meteorShowerTimer) {
+        clearTimeout(meteorShowerTimer);
+        meteorShowerTimer = null;
+        console.log('🌠 停止流星雨效果');
+    }
+}
+
+function createMeteor() {
+    const container = document.getElementById('meteor-container');
+    // 如果容器不存在或不可见，则不生成
+    if (!container) {
+        console.log('❌ Meteor container not found');
+        return;
+    }
+
+    // 检查是否还在入口页
+    const entrancePage = document.getElementById('page-entrance');
+    if (entrancePage && entrancePage.classList.contains('hidden')) {
+        stopMeteorShower();
+        return;
+    }
+
+    const meteor = document.createElement('div');
+    meteor.className = 'shooting-star';
+    
+    // 随机位置 - 在卡片内部
+    // 流星从左上往右下划过 (rotate -45deg)
+    // 从卡片的左边缘或上边缘开始，确保在卡片内可见
+    const startFromLeft = Math.random() > 0.5; // 50%从左边进入，50%从上边进入
+    
+    let startLeft, startTop;
+    if (startFromLeft) {
+        // 从左边进入
+        startLeft = -5; // 从左边缘外一点点
+        startTop = Math.random() * 100;  // 0% to 100%
+    } else {
+        // 从上边进入
+        startLeft = Math.random() * 100; // 0% to 100%
+        startTop = -5; // 从上边缘外一点点
+    }
+    
+    meteor.style.left = `${startLeft}%`;
+    meteor.style.top = `${startTop}%`;
+    
+    // 随机速度 0.8~1.2s
+    const duration = Math.random() * 0.4 + 0.8;
+    
+    // 设置动画 - 使用 animation 简写属性
+    meteor.style.animation = `shooting-star ${duration}s linear forwards`;
+    
+    console.log(`✨ Creating meteor at left:${startLeft.toFixed(1)}%, top:${startTop.toFixed(1)}%, duration:${duration.toFixed(2)}s`);
+    
+    container.appendChild(meteor);
+    
+    // 动画结束后移除
+    setTimeout(() => {
+        meteor.remove();
+        console.log('🗑️ Meteor removed');
+    }, duration * 1000 + 100);
+}

@@ -145,6 +145,11 @@ function showResult(result) {
         colorDot.style.boxShadow = `0 0 10px ${auraColor.code}80`;
     }
     
+    // 播放揭示音效
+    if (typeof audioManager !== 'undefined') {
+        audioManager.playRevealSound();
+    }
+    
     // 依次浮现元素
     setTimeout(() => {
         document.getElementById('result-card-anim').classList.remove('translate-y-4', 'opacity-0');
@@ -278,6 +283,11 @@ async function saveCard() {
         link.download = `lumina-${currentResult.card.id}-${Date.now()}.jpg`;
         link.href = canvas.toDataURL('image/jpeg', 0.9);
         link.click();
+        
+        // 播放完成音效
+        if (typeof audioManager !== 'undefined') {
+            audioManager.playCompleteSound();
+        }
     } catch (error) {
         console.error('生成图片失败:', error);
         alert('生成图片失败，请稍后重试');

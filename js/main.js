@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     initTagSelection();
     initCard3DEffect(); // 初始化3D卡牌效果
+    initMeteorShower(); // 初始化流星雨效果
     initPerformanceMonitor(); // 初始化性能监控
 
     // 绑定开始按钮

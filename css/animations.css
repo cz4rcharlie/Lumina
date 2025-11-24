@@ -17,3 +17,87 @@
     100% { opacity: 0.1; }
 }
 
+/* 流星划过效果 */
+.shooting-star {
+    position: absolute;
+    width: 3px;
+    height: 80px;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(229, 160, 192, 0.6) 10%,
+        rgba(255, 255, 255, 1) 30%,
+        rgba(229, 160, 192, 0.8) 50%,
+        rgba(255, 255, 255, 0.9) 70%,
+        rgba(229, 160, 192, 0.4) 90%,
+        transparent 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 15px rgba(229, 160, 192, 1),
+        0 0 30px rgba(255, 255, 255, 0.8),
+        0 0 50px rgba(229, 160, 192, 0.6);
+    /* animation: shooting-star 25s linear infinite; - 移至JS动态控制 */
+    transform: rotate(-45deg);
+    transform-origin: top left;
+    opacity: 0;
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+@keyframes shooting-star {
+    0% {
+        transform: translateX(0) translateY(0) rotate(-45deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(400px) translateY(400px) rotate(-45deg);
+        opacity: 0;
+    }
+}
+
+/* 反向流星划过效果 - 从右上向左下 */
+.shooting-star-reverse {
+    position: absolute;
+    width: 3px;
+    height: 80px;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(229, 160, 192, 0.6) 10%,
+        rgba(255, 255, 255, 1) 30%,
+        rgba(229, 160, 192, 0.8) 50%,
+        rgba(255, 255, 255, 0.9) 70%,
+        rgba(229, 160, 192, 0.4) 90%,
+        transparent 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 15px rgba(229, 160, 192, 1),
+        0 0 30px rgba(255, 255, 255, 0.8),
+        0 0 50px rgba(229, 160, 192, 0.6);
+    animation: shooting-star-reverse 25s linear infinite;
+    transform: rotate(45deg);
+    transform-origin: top right;
+    opacity: 0;
+}
+
+@keyframes shooting-star-reverse {
+    0% {
+        transform: translateX(0) translateY(0) rotate(45deg);
+        opacity: 0;
+    }
+    2% {
+        opacity: 1;
+    }
+    98% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-500px) translateY(500px) rotate(45deg);
+        opacity: 0;
+    }
+}
+

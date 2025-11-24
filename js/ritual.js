@@ -49,6 +49,11 @@ function startRitualLogic(useTouch = false, onComplete) {
     let lastX = 0, lastY = 0;
     let lastAlpha = 0, lastBeta = 0, lastGamma = 0;
     
+    // 播放洗牌音效
+    if (typeof audioManager !== 'undefined') {
+        audioManager.playShuffleSound();
+    }
+    
     // 进度条在3秒内逐渐填满
     progressBar.style.width = '0%';
     setTimeout(() => {
@@ -203,6 +208,11 @@ function startJourney() {
     if (!selectedTag) {
         alert('请先选择你的问题');
         return;
+    }
+    
+    // 播放点击音效
+    if (typeof audioManager !== 'undefined') {
+        audioManager.playClickSound();
     }
     
     // 请求陀螺仪权限（iOS）
