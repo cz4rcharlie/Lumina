@@ -6,6 +6,16 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+#page-result {
+    padding-bottom: 6rem; /* 给底部按钮留足空间 */
+    box-sizing: border-box;
+}
+
+#page-entrance {
+    padding-bottom: 4rem; /* 确保开始按钮不会被遮挡 */
+    box-sizing: border-box;
+}
+
 /* 噪点背景纹理 */
 .noise-bg {
     position: fixed;
