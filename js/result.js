@@ -17,16 +17,6 @@ function showResult(result) {
     const isReversed = result.isReversed;
     const hash = result.hash;
     
-    // 调试信息：在控制台显示卡牌信息
-    console.log('========== 卡牌信息 ==========');
-    console.log('卡牌ID:', card.id);
-    console.log('卡牌名称:', card.name_cn);
-    console.log('Hash值:', hash);
-    console.log('Hash % 2 =', hash % 2);
-    console.log('是否逆位:', isReversed);
-    console.log('图片旋转:', isReversed ? '180deg (逆位 - 图片应倒置)' : '0deg (正位 - 图片应正常)');
-    console.log('============================');
-    
     // 更新日期和月相
     const headerDiv = pages.result.querySelector('.flex.justify-between.items-center');
     if (headerDiv) {
@@ -61,14 +51,11 @@ function showResult(result) {
         };
         
         // 图片加载完成后的处理
-        const loadStartTime = performance.now();
         img.onload = () => {
-            const loadTime = performance.now() - loadStartTime;
             setRotation();
             // 移除加载动画，显示图片
             cardContainer.innerHTML = '';
             cardContainer.appendChild(img);
-            console.log(`图片加载完成，耗时: ${loadTime.toFixed(2)}ms，旋转状态:`, isReversed ? '180deg (逆位)' : '无旋转 (正位)');
         };
         
         img.onerror = function() {
@@ -107,13 +94,13 @@ function showResult(result) {
         document.getElementById('result-position-anim').classList.remove('opacity-0');
     }, 50);
     
-    // 更新关键词（新样式：衬线体，更大字号）
+    // 更新关键词（显示全部关键词）
     const keywords = isReversed ? card.keywords.reversed : card.keywords.upright;
     const keywordsContainer = document.querySelector('#result-text-anim .flex.justify-center');
     if (keywordsContainer) {
         keywordsContainer.innerHTML = '';
-        const selectedKeywords = keywords.slice(0, 2);
-        selectedKeywords.forEach(keyword => {
+        keywordsContainer.classList.add('flex-wrap', 'gap-2');
+        keywords.forEach(keyword => {
             const span = document.createElement('span');
             span.className = 'font-serif text-sm text-gold/90 border border-gold/30 px-3 py-1.5 rounded-full bg-gold/5';
             span.textContent = `#${keyword}`;

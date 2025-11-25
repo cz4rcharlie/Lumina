@@ -269,13 +269,6 @@ function initPerformanceMonitor() {
             fps = Math.round((frameCount * 1000) / (now - lastTime));
             frameCount = 0;
             lastTime = now;
-
-            // 记录低FPS警告
-            if (fps < 55) {
-                console.warn(`⚠️ FPS降低: ${fps} (期望60fps)`);
-            } else {
-                console.log(`✅ FPS正常: ${fps}`);
-            }
         }
         requestAnimationFrame(updateFPS);
     }
@@ -283,7 +276,6 @@ function initPerformanceMonitor() {
     // 只在开发模式下启用
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         updateFPS();
-        console.log('🎯 性能监控已启用 (仅开发环境)');
     }
 }
 
@@ -335,11 +327,8 @@ function initMeteorShower() {
     
     const container = document.getElementById('meteor-container');
     if (!container) {
-        console.error('❌ meteor-container not found in DOM');
         return;
     }
-
-    console.log('🌠 启动流星雨效果', container);
 
     function scheduleNext() {
         // 1~5秒随机间隔
@@ -361,7 +350,6 @@ function stopMeteorShower() {
     if (meteorShowerTimer) {
         clearTimeout(meteorShowerTimer);
         meteorShowerTimer = null;
-        console.log('🌠 停止流星雨效果');
     }
 }
 
@@ -369,7 +357,6 @@ function createMeteor() {
     const container = document.getElementById('meteor-container');
     // 如果容器不存在或不可见，则不生成
     if (!container) {
-        console.log('❌ Meteor container not found');
         return;
     }
 
@@ -408,13 +395,10 @@ function createMeteor() {
     // 设置动画 - 使用 animation 简写属性
     meteor.style.animation = `shooting-star ${duration}s linear forwards`;
     
-    console.log(`✨ Creating meteor at left:${startLeft.toFixed(1)}%, top:${startTop.toFixed(1)}%, duration:${duration.toFixed(2)}s`);
-    
     container.appendChild(meteor);
     
     // 动画结束后移除
     setTimeout(() => {
         meteor.remove();
-        console.log('🗑️ Meteor removed');
     }, duration * 1000 + 100);
 }
