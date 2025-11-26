@@ -2,6 +2,8 @@
 
 > 潜意识映射的沉浸式塔罗体验
 
+🌐 **在线体验：[lumina-flow.top](https://lumina-flow.top/)**
+
 一个基于纯前端技术的塔罗牌占卜网站，通过物理交互（陀螺仪/触摸）、精美视觉设计和多感官体验，打造极具仪式感的数字占卜之旅。
 
 ## ✨ 特色功能
@@ -67,6 +69,7 @@ http-server -p 8000
 3. **在线部署**（推荐）：
    - 部署到 Vercel / Netlify / GitHub Pages
    - 自动提供 HTTPS，可直接测试完整功能
+   - 🌐 **线上版本**：[lumina-flow.top](https://lumina-flow.top/)
 
 ## 📁 项目结构
 
@@ -87,7 +90,9 @@ Lumina/
 │   └── config.js         # 配置文件
 ├── cards/                 # 塔罗牌图片（PNG）
 ├── cards_small/           # 塔罗牌图片（WebP 优化版）
-└── MajorArcana22.json    # 塔罗牌数据与文案
+├── MajorArcana22.json    # 塔罗牌数据与文案
+├── robots.txt            # 搜索引擎爬虫规则
+└── sitemap.xml           # 网站地图
 
 ```
 
