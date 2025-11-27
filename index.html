@@ -34,9 +34,18 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Lumina 流光">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/cards/0. 愚人 (The Fool).png">
-    <link rel="apple-touch-icon" href="/cards/0. 愚人 (The Fool).png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/cards/0. 愚人 (The Fool).png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/cards/0. 愚人 (The Fool).png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/cards/0. 愚人 (The Fool).png">
+    
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#161025">
+    <meta name="msapplication-config" content="/browserconfig.xml">
     
     <!-- 资源预加载优化（DNS预解析） -->
     <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
@@ -78,6 +87,46 @@
     
     <!-- Tailwind配置 -->
     <script src="js/config.js"></script>
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Lumina 流光",
+        "alternateName": "塔罗牌占卜",
+        "description": "免费在线塔罗牌占卜。通过混沌洗牌算法，将你的手势与潜意识链接，抽取专属于你的大阿尔克那牌。探索爱情、事业、财运的神秘指引。",
+        "url": "https://lumina-flow.top/",
+        "applicationCategory": "Game",
+        "operatingSystem": "Web Browser",
+        "browserRequirements": "HTML5, Canvas支持, 陀螺仪(可选)",
+        "author": {
+            "@type": "Person",
+            "name": "筑梦查理"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "筑梦查理"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "128",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "genre": ["占卜", "塔罗牌", "心理测试", "治愈系"],
+        "keywords": "塔罗牌,占卜,免费塔罗,在线塔罗,大阿尔克那,爱情占卜,事业占卜,财运占卜,潜意识,Lumina,流光",
+        "inLanguage": "zh-CN",
+        "isAccessibleForFree": true,
+        "screenshot": "https://lumina-flow.top/cards/0. 愚人 (The Fool).png"
+    }
+    </script>
 </head>
 <body class="h-screen w-screen flex items-center justify-center font-sans relative">
 

@@ -1,0 +1,46 @@
+{
+    "name": "Lumina 流光 - 塔罗牌占卜",
+    "short_name": "Lumina 流光",
+    "description": "免费在线塔罗牌占卜。通过混沌洗牌算法，将你的手势与潜意识链接，抽取专属于你的大阿尔克那牌。探索爱情、事业、财运的神秘指引。",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#161025",
+    "theme_color": "#161025",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "zh-CN",
+    "dir": "ltr",
+    "categories": ["games", "entertainment", "lifestyle", "spirituality"],
+    "screenshots": [
+        {
+            "src": "/cards/0. 愚人 (The Fool).png",
+            "sizes": "1200x630",
+            "type": "image/png",
+            "label": "Lumina 流光 塔罗牌占卜主界面"
+        }
+    ],
+    "icons": [
+        {
+            "src": "/cards/0. 愚人 (The Fool).png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "shortcuts": [
+        {
+            "name": "开始占卜",
+            "short_name": "占卜",
+            "description": "直接开始塔罗牌占卜体验",
+            "url": "/",
+            "icons": [
+                {
+                    "src": "/cards/0. 愚人 (The Fool).png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ]
+}
